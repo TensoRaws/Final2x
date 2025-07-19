@@ -43,7 +43,7 @@
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@electron/notarize": "^2.5.0",
