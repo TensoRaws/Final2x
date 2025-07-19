@@ -12,8 +12,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(rollup@4.24.4)(vue-i18n@9.14.1(vue@3.5.12(typescript@5.6.3)))
       '@vicons/antd':
-        specifier: ^0.12.0
-        version: 0.12.0
+        specifier: ^0.13.0
+        version: 0.13.0
       '@vicons/ionicons5':
         specifier: ^0.12.0
         version: 0.12.0
@@ -842,8 +842,8 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@vicons/antd@0.12.0':
-    resolution: {integrity: sha512-C0p6aO1EmGG1QHrqgUWQS1No20934OdWSRQshM5NIDK5H1On6tC26U0hT6Rmp40KfUsvhvX5YW8BoWJdNFifPg==}
+  '@vicons/antd@0.13.0':
+    resolution: {integrity: sha512-yrUGoUSz2BbGupk9ghQOahc04n5H3MwUDM9pVPsLh9U1uqB47oRWZvYRiZaT1JKPqgTgSE6BXcVw4i9MOF4M+g==}
 
   '@vicons/ionicons5@0.12.0':
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
@@ -2097,6 +2097,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
@@ -3551,7 +3552,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vicons/antd@0.12.0': {}
+  '@vicons/antd@0.13.0': {}
 
   '@vicons/ionicons5@0.12.0': {}
 

@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@intlify/unplugin-vue-i18n": "^4.0.0",
-    "@vicons/antd": "^0.12.0",
+    "@vicons/antd": "^0.13.0",
     "@vicons/ionicons5": "^0.12.0",
     "core-js": "^3.39.0",
     "naive-ui": "^2.40.1",
