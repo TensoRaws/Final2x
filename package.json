@@ -32,7 +32,7 @@
     "@vicons/antd": "^0.12.0",
     "@vicons/ionicons5": "^0.12.0",
     "core-js": "^3.39.0",
-    "naive-ui": "^2.40.1",
+    "naive-ui": "^2.42.0",
     "pinia": "^2.2.6",
     "pinia-plugin-persistedstate": "^3.2.3",
     "sass": "^1.80.6",

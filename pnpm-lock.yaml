@@ -21,8 +21,8 @@ importers:
         specifier: ^3.39.0
         version: 3.39.0
       naive-ui:
-        specifier: ^2.40.1
-        version: 2.40.1(vue@3.5.12(typescript@5.6.3))
+        specifier: ^2.42.0
+        version: 2.42.0(vue@3.5.12(typescript@5.6.3))
       pinia:
         specifier: ^2.2.6
         version: 2.2.6(typescript@5.6.3)(vue@3.5.12(typescript@5.6.3))
@@ -748,8 +748,8 @@ packages:
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
-  '@types/lodash@4.17.13':
-    resolution: {integrity: sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==}
+  '@types/lodash@4.17.20':
+    resolution: {integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA==}
 
   '@types/minimatch@5.1.2':
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
@@ -1722,8 +1722,8 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+  highlight.js@11.11.1:
+    resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
     engines: {node: '>=12.0.0'}
 
   hosted-git-info@4.1.0:
@@ -2075,8 +2075,8 @@ packages:
   muggle-string@0.4.1:
     resolution: {integrity: sha512-VNTrAak/KhO2i8dqqnqnAHOa3cYBwXEZe9h+D5h/1ZqFSTEFHdM65lR7RoIqq3tBBYavsOXV84NoHXZ0AkPyqQ==}
 
-  naive-ui@2.40.1:
-    resolution: {integrity: sha512-3NkL+vLRQZKQxCHXa+7xiD6oM74OrQELaehDkGYRYpr6kjT+JJB+Z7h+5LC70gn8VkbgCAETv0+uRWF+6MLlgQ==}
+  naive-ui@2.42.0:
+    resolution: {integrity: sha512-c7cXR2YgOjgtBadXHwiWL4Y0tpGLAI5W5QzzHksOi22iuHXoSGMAzdkVTGVPE/PM0MSGQ/JtUIzCx2Y0hU0vTQ==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -2097,6 +2097,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
@@ -2366,8 +2367,8 @@ packages:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
 
-  seemly@0.3.9:
-    resolution: {integrity: sha512-bMLcaEqhIViiPbaumjLN8t1y+JpD/N8SiyYOyp0i0W6RgdyLWboIsUWAbZojF//JyerxPZR5Tgda+x3Pdne75A==}
+  seemly@0.3.10:
+    resolution: {integrity: sha512-2+SMxtG1PcsL0uyhkumlOU6Qo9TAQ/WyH7tthnPIOQB05/12jz9naq6GZ6iZ6ApVsO3rr2gsnTf3++OV63kE1Q==}
 
   semver-compare@1.0.0:
     resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
@@ -3427,9 +3428,9 @@ snapshots:
 
   '@types/lodash-es@4.17.12':
     dependencies:
-      '@types/lodash': 4.17.13
+      '@types/lodash': 4.17.20
 
-  '@types/lodash@4.17.13': {}
+  '@types/lodash@4.17.20': {}
 
   '@types/minimatch@5.1.2':
     optional: true
@@ -4643,7 +4644,7 @@ snapshots:
 
   he@1.2.0: {}
 
-  highlight.js@11.10.0: {}
+  highlight.js@11.11.1: {}
 
   hosted-git-info@4.1.0:
     dependencies:
@@ -4998,12 +4999,12 @@ snapshots:
 
   muggle-string@0.4.1: {}
 
-  naive-ui@2.40.1(vue@3.5.12(typescript@5.6.3)):
+  naive-ui@2.42.0(vue@3.5.12(typescript@5.6.3)):
     dependencies:
       '@css-render/plugin-bem': 0.15.14(css-render@0.15.14)
       '@css-render/vue3-ssr': 0.15.14(vue@3.5.12(typescript@5.6.3))
       '@types/katex': 0.16.7
-      '@types/lodash': 4.17.13
+      '@types/lodash': 4.17.20
       '@types/lodash-es': 4.17.12
       async-validator: 4.2.5
       css-render: 0.15.14
@@ -5011,10 +5012,10 @@ snapshots:
       date-fns: 3.6.0
       date-fns-tz: 3.2.0(date-fns@3.6.0)
       evtd: 0.2.4
-      highlight.js: 11.10.0
+      highlight.js: 11.11.1
       lodash: 4.17.21
       lodash-es: 4.17.21
-      seemly: 0.3.9
+      seemly: 0.3.10
       treemate: 0.3.11
       vdirs: 0.1.8(vue@3.5.12(typescript@5.6.3))
       vooks: 0.2.12(vue@3.5.12(typescript@5.6.3))
@@ -5297,7 +5298,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
-  seemly@0.3.9: {}
+  seemly@0.3.10: {}
 
   semver-compare@1.0.0:
     optional: true
@@ -5650,7 +5651,7 @@ snapshots:
       '@juggle/resize-observer': 3.4.0
       css-render: 0.15.14
       evtd: 0.2.4
-      seemly: 0.3.9
+      seemly: 0.3.10
       vdirs: 0.1.8(vue@3.5.12(typescript@5.6.3))
       vooks: 0.2.12(vue@3.5.12(typescript@5.6.3))
       vue: 3.5.12(typescript@5.6.3)
