@@ -46,7 +46,7 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@electron-toolkit/utils": "^3.0.0",
-    "@electron/notarize": "^2.5.0",
+    "@electron/notarize": "^3.0.1",
     "@rushstack/eslint-patch": "^1.10.4",
     "@types/node": "20.14.9",
     "@vitejs/plugin-vue": "^5.1.4",
