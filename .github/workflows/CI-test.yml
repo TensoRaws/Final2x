@@ -38,7 +38,7 @@ jobs:
           pnpm install
           pnpm run lint
           pnpm run typecheck
-          pnpm run test-cov
+          pnpm run test
         env:
           SKIP_DOWNLOAD_CORE: true
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
