@@ -10,7 +10,8 @@ files:
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 
-asar: false
+asarUnpack:
+  - resources/**
 
 afterSign: build/notarize.js
 
@@ -49,4 +50,5 @@ linux:
   category: Utility
 appImage:
   artifactName: ${name}-${version}.${ext}
+
 npmRebuild: false

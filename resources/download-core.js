@@ -1,4 +1,4 @@
-// download Final2x-core from https://github.com/Final2x/Final2x-core/releases
+// download Final2x-core from https://github.com/TensoRaws/Final2x-core/releases
 // and put it in resources folder
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
@@ -9,11 +9,11 @@ const child_process = require('child_process')
 
 const coreDict = {
   'macos-arm64':
-    'https://github.com/Tohrusky/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-arm64.7z',
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-arm64.7z',
   'macos-x64':
-    'https://github.com/Tohrusky/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-x64.7z',
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-x64.7z',
   'windows-x64':
-    'https://github.com/Tohrusky/Final2x-core/releases/download/2024-12-14/Final2x-core-windows-latest.7z'
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-windows-latest.7z'
 }
 
 console.log('-'.repeat(50))
