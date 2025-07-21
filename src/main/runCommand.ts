@@ -1,10 +1,9 @@
-import { spawn, spawnSync } from 'child_process'
-import path from 'path'
-import { app } from 'electron'
+import { spawn } from 'child_process'
+import { getCorePath } from './getCorePath'
 
 let child
 
-export async function RunCommand(
+export async function runCommand(
   event,
   config_json: string,
   openOutputFolder: boolean
@@ -16,15 +15,7 @@ export async function RunCommand(
   // ----
   config_json = Buffer.from(config_json, 'utf8').toString('base64')
 
-  if (!CheckPipPackage()) {
-    if (process.env.NODE_ENV === 'development') {
-      resourceUrl = path.join(app.getAppPath(), '/resources/Final2x-core/Final2x-core')
-    } else {
-      resourceUrl = path.join(app.getAppPath(), '/resources/Final2x-core/Final2x-core')
-    }
-  } else {
-    resourceUrl = 'Final2x-core'
-  }
+  resourceUrl = getCorePath()
 
   let command = `"${resourceUrl}" -b ${config_json}`
 
@@ -49,16 +40,8 @@ export async function RunCommand(
   })
 }
 
-export async function KillCommand(): Promise<void> {
+export async function killCommand(): Promise<void> {
   if (child) {
     child.kill()
   }
-}
-
-function CheckPipPackage(): boolean {
-  const command = `Final2x-core -h`
-
-  const result = spawnSync(command, { shell: true, encoding: 'utf-8' })
-
-  return result.status === 0
 }

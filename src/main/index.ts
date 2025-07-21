@@ -1,11 +1,11 @@
 import { app, BrowserWindow, ipcMain, Menu, nativeImage, shell, Tray } from 'electron'
 import { join } from 'path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { KillCommand, RunCommand } from './RunCommand'
+import { killCommand, runCommand } from './runCommand'
 import { openDirectory } from './openDirectory'
 
-const icon = join(__dirname, '../../resources/icon.png')
-const trayIcon = join(__dirname, '../../resources/tray.png')
+import icon from '../../resources/icon.png?asset'
+import trayIcon from '../../resources/tray.png?asset'
 
 function createWindow(): void {
   // Create the browser window.
@@ -30,9 +30,9 @@ function createWindow(): void {
     app.dock.setIcon(nativeImage.createFromPath(icon))
   }
 
-  ipcMain.on('execute-command', RunCommand)
+  ipcMain.on('execute-command', runCommand)
 
-  ipcMain.on('kill-command', KillCommand)
+  ipcMain.on('kill-command', killCommand)
 
   ipcMain.on('open-directory-dialog', openDirectory)
 
@@ -139,5 +139,5 @@ app.on('window-all-closed', () => {
   }
 })
 
-// In this file you can include the rest of your app"s specific main process
+// In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

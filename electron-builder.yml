@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.final2x.app
 productName: Final2x
 directories:
   buildResources: build
@@ -9,8 +9,16 @@ files:
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!resources/Final2x-core/**'
 
-asar: false
+asarUnpack:
+  - resources/*.png
+  - resources/*.svg
+  - resources/*.ico
+
+extraResources:
+  - from: resources/Final2x-core
+    to: Final2x-core
 
 afterSign: build/notarize.js
 
@@ -45,8 +53,10 @@ linux:
     - AppImage
     - snap
     - deb
-  maintainer: electronjs.org
+  maintainer: Tohrusky
   category: Utility
+
 appImage:
   artifactName: ${name}-${version}.${ext}
+
 npmRebuild: false

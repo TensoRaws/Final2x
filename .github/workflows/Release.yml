@@ -20,17 +20,17 @@ jobs:
 
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - name: build
         run: |
@@ -58,19 +58,19 @@ jobs:
         shell: cmd
 
       - name: upload-setup
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.exe
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/win-unpacked/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/win-arm64-unpacked/*.7z
 
@@ -81,17 +81,17 @@ jobs:
 
     runs-on: macos-14
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - name: build
         run: |
@@ -119,19 +119,19 @@ jobs:
           7z a -r Final2x-macos-${{ matrix.os-version }}-unpacked.7z *
 
       - name: upload-dmg
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.dmg
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/mac/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/mac-arm64/*.7z
 
@@ -140,19 +140,19 @@ jobs:
       matrix:
         os-version: ['x64']
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - name: build
         run: |
@@ -175,22 +175,22 @@ jobs:
           mv *.deb Final2x-linux-pip-${{ matrix.os-version }}-deb.deb
 
       - name: upload-snap
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.snap
 
       - name: upload-AppImage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.AppImage
 
       - name: upload-deb
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.deb
 
       - name: upload-unpacked
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/linux-unpacked/*.7z
 
