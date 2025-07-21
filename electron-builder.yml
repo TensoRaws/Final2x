@@ -9,9 +9,16 @@ files:
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+  - '!resources/Final2x-core/**'
 
 asarUnpack:
-  - resources/**
+  - resources/*.png
+  - resources/*.svg
+  - resources/*.ico
+
+extraResources:
+  - from: resources/Final2x-core
+    to: Final2x-core
 
 afterSign: build/notarize.js
 
