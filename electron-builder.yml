@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: com.final2x.app
 productName: Final2x
 directories:
   buildResources: build
