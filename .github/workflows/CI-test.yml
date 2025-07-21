@@ -17,21 +17,21 @@ jobs:
   test:
     strategy:
       matrix:
-        os-version: ['macos-latest', 'windows-latest', 'ubuntu-20.04']
+        os-version: ['ubuntu-latest']
 
     runs-on: ${{ matrix.os-version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 10
 
       - name: Test
         run: |

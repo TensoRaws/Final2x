@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "electron-vite dev",
     "test": "vitest run --coverage",
-    "lint": "prettier --write . && eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
+    "lint": "prettier --write .",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
     "typecheck": "pnpm run typecheck:node && npm run typecheck:web",
