@@ -58,19 +58,19 @@ jobs:
         shell: cmd
 
       - name: upload-setup
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.exe
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/win-unpacked/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/win-arm64-unpacked/*.7z
 
@@ -119,19 +119,19 @@ jobs:
           7z a -r Final2x-macos-${{ matrix.os-version }}-unpacked.7z *
 
       - name: upload-dmg
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.dmg
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/mac/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/mac-arm64/*.7z
 
@@ -175,22 +175,22 @@ jobs:
           mv *.deb Final2x-linux-pip-${{ matrix.os-version }}-deb.deb
 
       - name: upload-snap
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.snap
 
       - name: upload-AppImage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.AppImage
 
       - name: upload-deb
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.deb
 
       - name: upload-unpacked
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/linux-unpacked/*.7z
 

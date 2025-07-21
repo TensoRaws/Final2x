@@ -53,21 +53,21 @@ jobs:
           7z a -r Final2x-windows-${{ matrix.os-version }}-unpacked.7z *
 
       - name: upload-setup
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-windows-${{ matrix.os-version }}-setup
           path: dist/*.exe
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-windows-${{ matrix.os-version }}-unpacked
           path: dist/win-unpacked/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-windows-${{ matrix.os-version }}-unpacked
           path: dist/win-arm64-unpacked/*.7z
@@ -112,21 +112,21 @@ jobs:
           7z a -r Final2x-macos-${{ matrix.os-version }}-unpacked.7z *
 
       - name: upload-dmg
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-macos-${{ matrix.os-version }}-dmg
           path: dist/*.dmg
 
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-macos-${{ matrix.os-version }}-unpacked
           path: dist/mac/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-macos-${{ matrix.os-version }}-unpacked
           path: dist/mac-arm64/*.7z
@@ -164,25 +164,25 @@ jobs:
           7z a -r Final2x-linux-pip-${{ matrix.os-version }}-unpacked.7z *
 
       - name: upload-snap
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-linux-pip-${{ matrix.os-version }}-snap
           path: dist/*.snap
 
       - name: upload-AppImage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-linux-pip-${{ matrix.os-version }}-AppImage
           path: dist/*.AppImage
 
       - name: upload-deb
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-linux-pip-${{ matrix.os-version }}-deb
           path: dist/*.deb
 
       - name: upload-unpacked
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Final2x-linux-pip-${{ matrix.os-version }}-unpacked
           path: dist/linux-unpacked/*.7z
