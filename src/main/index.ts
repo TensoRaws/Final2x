@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, Menu, nativeImage, shell, Tray } from 'electron'
 import { join } from 'path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { KillCommand, RunCommand } from './runCommand'
+import { killCommand, runCommand } from './runCommand'
 import { openDirectory } from './openDirectory'
 
 import icon from '../../resources/icon.png?asset'
@@ -30,9 +30,9 @@ function createWindow(): void {
     app.dock.setIcon(nativeImage.createFromPath(icon))
   }
 
-  ipcMain.on('execute-command', RunCommand)
+  ipcMain.on('execute-command', runCommand)
 
-  ipcMain.on('kill-command', KillCommand)
+  ipcMain.on('kill-command', killCommand)
 
   ipcMain.on('open-directory-dialog', openDirectory)
 

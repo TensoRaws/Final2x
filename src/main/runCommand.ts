@@ -1,9 +1,9 @@
 import { spawn } from 'child_process'
-import { GetCorePath } from './getCorePath'
+import { getCorePath } from './getCorePath'
 
 let child
 
-export async function RunCommand(
+export async function runCommand(
   event,
   config_json: string,
   openOutputFolder: boolean
@@ -15,7 +15,7 @@ export async function RunCommand(
   // ----
   config_json = Buffer.from(config_json, 'utf8').toString('base64')
 
-  resourceUrl = GetCorePath()
+  resourceUrl = getCorePath()
 
   let command = `"${resourceUrl}" -b ${config_json}`
 
@@ -40,7 +40,7 @@ export async function RunCommand(
   })
 }
 
-export async function KillCommand(): Promise<void> {
+export async function killCommand(): Promise<void> {
   if (child) {
     child.kill()
   }
