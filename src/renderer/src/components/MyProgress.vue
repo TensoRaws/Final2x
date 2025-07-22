@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { nextTick, onMounted, ref, watchEffect } from 'vue'
-import { storeToRefs } from 'pinia'
 import { useDialog, useNotification } from 'naive-ui'
+import { storeToRefs } from 'pinia'
+import { nextTick, onMounted, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-import { getFinal2xconfig } from '../utils/getFinal2xconfig'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
+import { getFinal2xconfig } from '../utils/getFinal2xconfig'
 import ioPATH from '../utils/IOPath'
 
 const { t } = useI18n()
@@ -17,7 +17,7 @@ const {
   StartCommandLock,
   SrSuccess,
   ProgressPercentage,
-  openOutputFolder
+  openOutputFolder,
 } = storeToRefs(useGlobalSettingsStore())
 
 const showLOG = ref(false)
@@ -49,7 +49,7 @@ function handleCommandLOG(log: string): void {
   }
 
   if (processingMatch) {
-    ProgressPercentage.value = parseFloat(processingMatch[1])
+    ProgressPercentage.value = Number.parseFloat(processingMatch[1])
   }
 
   if (srSuccessMatch) {
@@ -61,14 +61,14 @@ class MyProgressNotifications {
   static StartSR(): void {
     notification.success({
       title: t('MyProgress.text0'),
-      duration: 1500
+      duration: 1500,
     })
   }
 
   static SRprocessing(): void {
     notification.warning({
       title: t('MyProgress.text1'),
-      duration: 1500
+      duration: 1500,
     })
   }
 
@@ -77,7 +77,7 @@ class MyProgressNotifications {
       title: t('MyProgress.text2'),
       content: t('MyProgress.text3'),
       duration: 1500,
-      keepAliveOnHover: true
+      keepAliveOnHover: true,
     })
   }
 
@@ -85,7 +85,7 @@ class MyProgressNotifications {
     notification.error({
       title: t('MyProgress.text4'),
       duration: 1500,
-      keepAliveOnHover: true
+      keepAliveOnHover: true,
     })
   }
 
@@ -94,7 +94,7 @@ class MyProgressNotifications {
       title: t('MyProgress.text5'),
       content: imagePath,
       duration: 2000,
-      keepAliveOnHover: true
+      keepAliveOnHover: true,
     })
   }
 }
@@ -103,7 +103,7 @@ class MyProgressDialogs {
   static SrFailed(): void {
     dialog.error({
       title: t('MyProgress.text9'),
-      content: t('MyProgress.text10')
+      content: t('MyProgress.text10'),
     })
   }
 }
@@ -126,41 +126,32 @@ function StartSR(): void {
 
   const command = getFinal2xconfig()
 
-  CommandLOG.value += '\n' + command + '\n'
-  CommandLOG.value += 'OPEN OUTPUT FOLDER: ' + openOutputFolder.value + '\n'
+  CommandLOG.value += `\n${command}\n`
+  CommandLOG.value += `OPEN OUTPUT FOLDER: ${openOutputFolder.value}\n`
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('execute-command', command, openOutputFolder.value)
 }
 
 function TerminateSR(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('kill-command')
   MyProgressNotifications.TerminateSR()
 }
 
 watchEffect(() => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  window.electron.ipcRenderer.on('command-stdout', (event, data) => {
+  window.electron.ipcRenderer.on('command-stdout', (_, data) => {
     handleCommandLOG(data)
   })
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  window.electron.ipcRenderer.on('command-stderr', (event, data) => {
+  window.electron.ipcRenderer.on('command-stderr', (_, data) => {
     handleCommandLOG(data)
   })
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  window.electron.ipcRenderer.on('command-close-code', (event, data) => {
-    handleCommandLOG('CLOSE CODE:' + data)
+  window.electron.ipcRenderer.on('command-close-code', (_, data) => {
+    handleCommandLOG(`CLOSE CODE:${data}`)
     StartCommandLock.value = false
 
     if (!SrSuccess.value) {
       MyProgressDialogs.SrFailed()
-    } else {
+    }
+    else {
       ioPATH.clearALL()
     }
   })
@@ -193,7 +184,7 @@ watchEffect(() => {
 
     <n-drawer v-model:show="showLOG" height="385" placement="top">
       <n-drawer-content :native-scrollbar="false" title="">
-        <br />
+        <br>
         <n-card hoverable size="small" title="Log">
           <n-log ref="logInstRef" :log="CommandLOG" trim />
         </n-card>

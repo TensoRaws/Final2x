@@ -8,7 +8,7 @@ import { dialog } from 'electron'
 export function openDirectory(event, p: Array<any>): void {
   dialog
     .showOpenDialog({
-      properties: p
+      properties: p,
     })
     .then((result) => {
       console.log(result)

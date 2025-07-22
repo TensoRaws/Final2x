@@ -1,14 +1,15 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
-import { UploadFileInfo, useNotification } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
+import type { UploadFileInfo } from 'naive-ui'
 import { FileImageOutlined } from '@vicons/antd'
+import { useNotification } from 'naive-ui'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-import PathFormat from '../utils/pathFormat'
-import ioPATH from '../utils/IOPath'
-import { getRandString } from '../utils'
 import { useIOPathStore } from '../store/ioPathStore'
+import { getRandString } from '../utils'
+import ioPATH from '../utils/IOPath'
+import PathFormat from '../utils/pathFormat'
 
 const { t } = useI18n()
 const notification = useNotification()
@@ -22,16 +23,14 @@ class Final2xHomeNotifications {
     notification.success({
       title: t('Final2xHome.text0'),
       content: s,
-      duration: 1000
+      duration: 1000,
     })
   }
 }
 
 function handleClickUpload(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleSelected = (e, path): void => {
-    if (path != undefined) {
+  const handleSelected = (_, path): void => {
+    if (path !== undefined) {
       path.forEach((p: string) => {
         // 生成随机id
         let pathid = getRandString()
@@ -50,33 +49,26 @@ function handleClickUpload(): void {
           status: 'pending',
           thumbnailUrl: null,
           type: 'image/png',
-          url: null
+          url: null,
         })
       })
     }
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+
   window.electron.ipcRenderer.removeAllListeners('selectedItem') // 取消监听，防止多次触发
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('open-directory-dialog', ['openFile', 'multiSelections'])
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.on('selectedItem', handleSelected)
 }
 
 onMounted(() => {
   const dragWrapper = document.getElementById('file_drag')
   dragWrapper?.addEventListener('drop', (e) => {
-    //阻止默认行为
+    // 阻止默认行为
     e.preventDefault()
-    //获取文件列表
+    // 获取文件列表
     const files = e.dataTransfer?.files
 
     if (files && files.length > 0) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       const path = files[0].path // Get file path, the path is absolute path, electron can use directly
       console.log(path)
       pathFormat.setRootPath(path)
@@ -84,7 +76,7 @@ onMounted(() => {
       ioPATH.setoutputpath(pathFormat.getRootPath())
     }
   })
-  //阻止拖拽结束事件默认行为
+  // 阻止拖拽结束事件默认行为
   dragWrapper?.addEventListener('dragover', (e) => {
     e.preventDefault()
   })
@@ -102,7 +94,7 @@ function handleBeforeUpload(options: { file: UploadFileInfo }): UploadFileInfo {
   return options.file
 }
 
-function handleRemove(options: { file: UploadFileInfo; fileList: Array<UploadFileInfo> }): boolean {
+function handleRemove(options: { file: UploadFileInfo, fileList: Array<UploadFileInfo> }): boolean {
   // console.log(ioPATH.show())
   // console.log(options.file.id)
   Final2xHomeNotifications.handleremove(ioPATH.getByID(options.file.id))
@@ -126,10 +118,12 @@ function handleRemove(options: { file: UploadFileInfo; fileList: Array<UploadFil
         <div class="file-drag-zone-logo-text">
           <div style="margin-bottom: 12px">
             <n-icon size="48" depth="3.0">
-              <file-image-outlined />
+              <FileImageOutlined />
             </n-icon>
           </div>
-          <n-text style="font-size: 16px"> {{ t('Final2xHome.text1') }}</n-text>
+          <n-text style="font-size: 16px">
+            {{ t('Final2xHome.text1') }}
+          </n-text>
         </div>
       </n-upload-dragger>
     </n-upload>

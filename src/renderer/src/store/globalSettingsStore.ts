@@ -1,7 +1,8 @@
-import { ref, Ref } from 'vue'
-import { defineStore } from 'pinia'
-import { LogInst } from 'naive-ui'
+import type { LogInst } from 'naive-ui'
+import type { Ref } from 'vue'
 import type { NaiveDarkModeType } from '../components/NaiveDarkMode.vue'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useGlobalSettingsStore = defineStore(
   'GlobalSettings',
@@ -19,7 +20,7 @@ export const useGlobalSettingsStore = defineStore(
       { value: 'auto', label: 'Auto' },
       { value: 'cuda', label: 'CUDA' },
       { value: 'mps', label: 'MPS' },
-      { value: 'cpu', label: 'CPU' }
+      { value: 'cpu', label: 'CPU' },
     ])
 
     const ProgressPercentage = ref(0)
@@ -43,7 +44,7 @@ export const useGlobalSettingsStore = defineStore(
       StartCommandLock,
       SrSuccess,
       logInstRef,
-      openOutputFolder
+      openOutputFolder,
     }
   },
   {
@@ -55,8 +56,8 @@ export const useGlobalSettingsStore = defineStore(
         'darkMode',
         'naiveTheme',
         'globalcolor',
-        'openOutputFolder'
-      ]
-    }
-  }
+        'openOutputFolder',
+      ],
+    },
+  },
 )

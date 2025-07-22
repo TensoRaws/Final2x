@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import NaiveDarkMode from './NaiveDarkMode.vue'
-import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { storeToRefs } from 'pinia'
+import { useGlobalSettingsStore } from '../store/globalSettingsStore'
+import NaiveDarkMode from './NaiveDarkMode.vue'
 
 const { darkMode, globalcolor, naiveTheme } = storeToRefs(useGlobalSettingsStore())
 </script>
 
 <template>
   <div>
-    <naive-dark-mode
+    <NaiveDarkMode
       v-model:color="globalcolor"
       v-model:naivetheme="naiveTheme"
       :dark-mode="darkMode"
-      :design-dark="'#101015'"
-      :design-light="'#fffafa'"
+      design-dark="#101015"
+      design-light="#fffafa"
       :fade-layer="0"
       class="naive-dark-mode"
     />

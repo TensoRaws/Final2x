@@ -2,10 +2,10 @@
  * @vitest-environment jsdom
  */
 
-import { sleep, DeepDeepSleep, getRandString, clickDebounce } from '../../src/renderer/src/utils'
 import { describe, expect, it, vi } from 'vitest'
+import { clickDebounce, DeepDeepSleep, getRandString, sleep } from '../../src/renderer/src/utils'
 
-describe('Utils', () => {
+describe('utils', () => {
   it('sleep', async () => {
     const start = new Date().getTime()
     await sleep(1010)
@@ -13,7 +13,7 @@ describe('Utils', () => {
     expect(end - start).toBeGreaterThanOrEqual(1000)
   })
 
-  it('DeepDeepSleep', () => {
+  it('deepDeepSleep', () => {
     const start = new Date().getTime()
     DeepDeepSleep(1010)
     const end = new Date().getTime()

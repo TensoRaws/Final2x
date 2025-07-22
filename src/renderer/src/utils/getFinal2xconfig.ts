@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
-import { useSRSettingsStore } from '../store/SRSettingsStore'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
+import { useSRSettingsStore } from '../store/SRSettingsStore'
 import ioPath from '../utils/IOPath'
 import PathFormat from '../utils/pathFormat'
 
@@ -20,7 +20,7 @@ function getOutPutPATH(): string {
 /**
  * @description: 返回最终的json字符串配置文件
  */
-export const getFinal2xconfig = (): string => {
+export function getFinal2xconfig(): string {
   const { selectedSRModel, ghProxy, targetScale } = storeToRefs(useSRSettingsStore())
   const { selectedTorchDevice } = storeToRefs(useGlobalSettingsStore())
 
@@ -30,7 +30,8 @@ export const getFinal2xconfig = (): string => {
   let _gh_proxy: string | null
   if (ghProxy.value === '') {
     _gh_proxy = null
-  } else {
+  }
+  else {
     _gh_proxy = ghProxy.value
   }
 
@@ -40,6 +41,6 @@ export const getFinal2xconfig = (): string => {
     gh_proxy: _gh_proxy,
     target_scale: targetScale.value,
     output_path: outputPATH,
-    input_path: inputPATHList
+    input_path: inputPATHList,
   })
 }

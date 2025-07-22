@@ -5,11 +5,11 @@ class Utils {
    * @description 返回语言，和语言数量
    * @param id 语言id 0-> en, 1-> zh, 2-> ja, 3-> fr
    */
-  static getLanguage(id: number): { lang: string; numLang: number } {
+  static getLanguage(id: number): { lang: string, numLang: number } {
     const langs = LANG_LIST
     return {
       lang: langs[id],
-      numLang: langs.length
+      numLang: langs.length,
     }
   }
 
@@ -18,7 +18,7 @@ class Utils {
    * @param timeout 等待时间，单位毫秒
    */
   static sleep(timeout: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, timeout))
+    return new Promise(resolve => setTimeout(resolve, timeout))
   }
 
   /**
@@ -46,7 +46,7 @@ class Utils {
    */
   static clickDebounce(
     fn: (...args: any[]) => void,
-    delay: number = 500
+    delay: number = 500,
   ): (...args: any[]) => void {
     let timer: NodeJS.Timeout | null = null
     let immediate = true

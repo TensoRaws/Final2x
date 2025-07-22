@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
 import { en } from '../locales/en'
-import { zh } from '../locales/zh'
-import { ja } from '../locales/ja'
 import { fr } from '../locales/fr'
+import { ja } from '../locales/ja'
+import { zh } from '../locales/zh'
 
 // -----------------------------------------------------------------------------
 // to add a new language, add the language file to the locales folder and add the language id to the LANG_LIST array
@@ -19,8 +19,8 @@ const i18n = createI18n({
     en,
     zh,
     ja,
-    fr
-  }
+    fr,
+  },
 })
 
 export default i18n

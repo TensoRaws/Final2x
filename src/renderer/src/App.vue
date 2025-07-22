@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { RouterView } from 'vue-router'
-import { NConfigProvider, NDialogProvider, NNotificationProvider, NGlobalStyle } from 'naive-ui'
-import { onMounted, watch } from 'vue'
+import { NConfigProvider, NDialogProvider, NGlobalStyle, NNotificationProvider } from 'naive-ui'
 import { storeToRefs } from 'pinia'
+import { onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { getLanguage } from './utils'
-import { useGlobalSettingsStore } from './store/globalSettingsStore'
-import TrafficLightsButtons from './components/TrafficLightsButtons.vue'
-import MyProgress from './components/MyProgress.vue'
+import { RouterView } from 'vue-router'
 import BottomNavigation from './components/bottomNavigation.vue'
 import MyDarkMode from './components/MyDarkMode.vue'
+import MyProgress from './components/MyProgress.vue'
+import TrafficLightsButtons from './components/TrafficLightsButtons.vue'
+import { useGlobalSettingsStore } from './store/globalSettingsStore'
+import { getLanguage } from './utils'
 
 const { locale } = useI18n()
 const { langsNum, naiveTheme, globalcolor } = storeToRefs(useGlobalSettingsStore())
@@ -31,36 +31,36 @@ const themeOverrides = {
   Select: {
     peers: {
       InternalSelectMenu: {
-        height: '200px'
-      }
-    }
-  }
+        height: '200px',
+      },
+    },
+  },
 }
 </script>
 
 <template>
-  <n-config-provider :theme="naiveTheme" :theme-overrides="themeOverrides">
-    <n-global-style />
-    <n-notification-provider class="n-config-provider" placement="top">
-      <n-dialog-provider>
+  <NConfigProvider :theme="naiveTheme" :theme-overrides="themeOverrides">
+    <NGlobalStyle />
+    <NNotificationProvider class="n-config-provider" placement="top">
+      <NDialogProvider>
         <div class="background">
-          <my-dark-mode />
-          <traffic-lights-buttons />
+          <MyDarkMode />
+          <TrafficLightsButtons />
           <MyProgress />
           <div class="view">
-            <router-view v-slot="{ Component }">
+            <RouterView v-slot="{ Component }">
               <transition mode="out-in" name="custom-fade">
                 <keep-alive>
                   <component :is="Component" />
                 </keep-alive>
               </transition>
-            </router-view>
+            </RouterView>
           </div>
-          <bottom-navigation />
+          <BottomNavigation />
         </div>
-      </n-dialog-provider>
-    </n-notification-provider>
-  </n-config-provider>
+      </NDialogProvider>
+    </NNotificationProvider>
+  </NConfigProvider>
 </template>
 
 <style lang="scss" scoped>

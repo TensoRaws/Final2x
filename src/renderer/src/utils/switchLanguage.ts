@@ -9,7 +9,8 @@ export function switchLanguage(): void {
   const { langsNum } = storeToRefs(useGlobalSettingsStore())
   if (langsNum.value === 114514) {
     langsNum.value = 1
-  } else {
+  }
+  else {
     langsNum.value = (langsNum.value + 1) % getLanguage(0).numLang
   }
 }

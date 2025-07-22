@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import PathFormat from '../../src/renderer/src/utils/pathFormat'
 
-describe('PathFormat', () => {
+describe('pathFormat', () => {
   it('test_unix', () => {
     const pathFormat = new PathFormat()
     pathFormat.setRootPath('/Users/test/Downloads/unix')
@@ -15,7 +15,7 @@ describe('PathFormat', () => {
     const check: Array<string> = [pathFormat.getRootPath(), pathFormat.getNewPath('/win/test.txt')]
     expect(check).toStrictEqual([
       'C:\\Users\\test\\Downloads',
-      'C:\\Users\\test\\Downloads\\win\\test.txt'
+      'C:\\Users\\test\\Downloads\\win\\test.txt',
     ])
   })
 
@@ -24,7 +24,7 @@ describe('PathFormat', () => {
       PathFormat.checkPath('/Users/test/Downloads/unix'),
       PathFormat.checkPath('C:\\Users\\test\\Downloads\\win'),
       PathFormat.checkPath('C:Users/test/Downloads/unix/test.txt'),
-      PathFormat.checkPath('Users/test/Downloads/unix/test.txt')
+      PathFormat.checkPath('Users/test/Downloads/unix/test.txt'),
     ]
     expect(check).toStrictEqual([true, true, false, false])
   })
@@ -32,7 +32,7 @@ describe('PathFormat', () => {
   it('get_file_name', () => {
     expect(PathFormat.getFileName('/Users/test/Downloads/unix/114514.txt')).toBe('114514.txt')
     expect(PathFormat.getFileName('C:\\Users\\test\\Downloads\\win\\genshin.png')).toBe(
-      'genshin.png'
+      'genshin.png',
     )
   })
 })

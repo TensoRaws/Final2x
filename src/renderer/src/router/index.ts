@@ -7,17 +7,17 @@ export default createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/Final2xHome'
+      redirect: '/Final2xHome',
     },
     {
       path: '/Final2xHome',
       name: 'Final2xHome',
-      component: Final2xHome
+      component: Final2xHome,
     },
     {
       path: '/Final2xSettings',
       name: 'Final2xSettings',
-      component: Final2xSettings
-    }
-  ]
+      component: Final2xSettings,
+    },
+  ],
 })
