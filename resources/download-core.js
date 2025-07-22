@@ -2,10 +2,10 @@
 // and put it in resources folder
 
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
-const fs = require('fs')
-const path = require('path')
+const child_process = require('node:child_process')
+const fs = require('node:fs')
 
-const child_process = require('child_process')
+const path = require('node:path')
 
 const coreDict = {
   'macos-arm64':
@@ -13,7 +13,7 @@ const coreDict = {
   'macos-x64':
     'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-x64.7z',
   'windows-x64':
-    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-windows-latest.7z'
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-windows-latest.7z',
 }
 
 console.log('-'.repeat(50))
@@ -83,12 +83,15 @@ async function downloadAndUnzipCore(platform) {
 let platformToDownload = ''
 if (PLATFORM === 'darwin') {
   platformToDownload = ARCH === 'arm64' ? 'macos-arm64' : 'macos-x64'
-} else if (PLATFORM === 'linux') {
+}
+else if (PLATFORM === 'linux') {
   console.error('Skip download Final2x-core for linux! Please use pip to install Final2x-core')
   process.exit(0)
-} else if (PLATFORM === 'win32') {
+}
+else if (PLATFORM === 'win32') {
   platformToDownload = 'windows-x64'
-} else {
+}
+else {
   console.error('Unsupported platform!')
   process.exit(1)
 }

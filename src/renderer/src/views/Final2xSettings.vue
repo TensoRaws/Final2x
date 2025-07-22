@@ -2,35 +2,27 @@
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
 
+import { useGlobalSettingsStore } from '../store/globalSettingsStore'
+import { useIOPathStore } from '../store/ioPathStore'
+import { useSRSettingsStore } from '../store/SRSettingsStore'
 import ioPath from '../utils/IOPath'
 import { modelOptions } from '../utils/ModelOptions'
-import { useIOPathStore } from '../store/ioPathStore'
-import { useGlobalSettingsStore } from '../store/globalSettingsStore'
-import { useSRSettingsStore } from '../store/SRSettingsStore'
 
-const { selectedTorchDevice, torchDeviceList, openOutputFolder } =
-  storeToRefs(useGlobalSettingsStore())
+const { selectedTorchDevice, torchDeviceList, openOutputFolder }
+  = storeToRefs(useGlobalSettingsStore())
 const { selectedSRModel, ghProxy, targetScale } = storeToRefs(useSRSettingsStore())
 const { outputpath } = storeToRefs(useIOPathStore())
 const { t } = useI18n()
 
 function getPath(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const handleSelected = (e, path): void => {
-    if (path[0] != undefined) {
+  const handleSelected = (_, path): void => {
+    if (path[0] !== undefined) {
       // console.log(ioPath.getoutputpath())
       ioPath.setoutputpathManual(path[0])
     }
   }
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.removeAllListeners('selectedItem') // 取消监听，防止多次触发
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('open-directory-dialog', ['openDirectory'])
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.on('selectedItem', handleSelected)
 }
 </script>
@@ -88,7 +80,9 @@ function getPath(): void {
         </n-button>
 
         <n-switch v-model:value="openOutputFolder" size="large" style="height: 35px; width: 76px">
-          <template #checked> OPEN </template>
+          <template #checked>
+            OPEN
+          </template>
         </n-switch>
 
         <n-input v-model:value="outputpath" :placeholder="outputpath" round style="width: 308px" />

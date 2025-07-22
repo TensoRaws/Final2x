@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+
 const isFocus = ref(true)
 
-const handleFocus = (): void => {
+function handleFocus(): void {
   isFocus.value = true
 }
 
-const handleBlur = (): void => {
+function handleBlur(): void {
   isFocus.value = false
 }
 
@@ -21,20 +22,14 @@ onUnmounted(() => {
 })
 
 function handleClose(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('close')
 }
 
 function handleMinimize(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('minimize')
 }
 
 function handleMaximize(): void {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   window.electron.ipcRenderer.send('maximize')
 }
 </script>
@@ -49,17 +44,17 @@ function handleMaximize(): void {
             id="close"
             class="traffic-light traffic-light-close"
             @click="handleClose"
-          ></button>
+          />
           <button
             id="minimize"
             class="traffic-light traffic-light-minimize"
             @click="handleMinimize"
-          ></button>
+          />
           <button
             id="maximize"
             class="traffic-light traffic-light-maximize"
             @click="handleMaximize"
-          ></button>
+          />
         </div>
       </div>
     </div>
@@ -70,17 +65,17 @@ function handleMaximize(): void {
             id="close"
             class="traffic-light traffic-light-close"
             @click="handleClose"
-          ></button>
+          />
           <button
             id="minimize"
             class="traffic-light traffic-light-minimize"
             @click="handleMinimize"
-          ></button>
+          />
           <button
             id="maximize"
             class="traffic-light traffic-light-maximize"
             @click="handleMaximize"
-          ></button>
+          />
         </div>
       </div>
     </div>

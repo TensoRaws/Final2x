@@ -1,11 +1,11 @@
-import { app, BrowserWindow, ipcMain, Menu, nativeImage, shell, Tray } from 'electron'
-import { join } from 'path'
+import { join } from 'node:path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
-import { killCommand, runCommand } from './runCommand'
-import { openDirectory } from './openDirectory'
-
+import { app, BrowserWindow, ipcMain, Menu, nativeImage, shell, Tray } from 'electron'
 import icon from '../../resources/icon.png?asset'
 import trayIcon from '../../resources/tray.png?asset'
+
+import { openDirectory } from './openDirectory'
+import { killCommand, runCommand } from './runCommand'
 
 function createWindow(): void {
   // Create the browser window.
@@ -22,8 +22,8 @@ function createWindow(): void {
     icon: nativeImage.createFromPath(icon),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
-    }
+      sandbox: false,
+    },
   })
 
   if (process.platform === 'darwin') {
@@ -43,7 +43,8 @@ function createWindow(): void {
   ipcMain.on('maximize', () => {
     if (mainWindow.isMaximized()) {
       mainWindow.restore()
-    } else {
+    }
+    else {
       mainWindow.maximize()
     }
   })
@@ -51,7 +52,8 @@ function createWindow(): void {
   ipcMain.on('close', () => {
     if (process.platform !== 'darwin') {
       app.quit()
-    } else {
+    }
+    else {
       app.hide()
     }
   })
@@ -67,10 +69,11 @@ function createWindow(): void {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  if (is.dev && process.env.ELECTRON_RENDERER_URL) {
+    mainWindow.loadURL(process.env.ELECTRON_RENDERER_URL)
     mainWindow.webContents.openDevTools()
-  } else {
+  }
+  else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
@@ -89,17 +92,18 @@ function setTray(): void {
         // dock icon is clicked and there are no other windows open.
         if (BrowserWindow.getAllWindows().length === 0) {
           createWindow()
-        } else {
+        }
+        else {
           BrowserWindow.getAllWindows()[0].show()
         }
-      }
+      },
     },
     {
       label: 'Exit',
       click: (): void => {
         app.quit()
-      }
-    }
+      },
+    },
   ])
 
   tray.setToolTip('Final2x')
@@ -123,10 +127,11 @@ app.whenReady().then(() => {
   setTray()
   createWindow()
 
-  app.on('activate', function () {
+  app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0)
+      createWindow()
   })
 })
 

@@ -15,7 +15,7 @@ class openWebsite {
     <n-space>
       <n-button style="font-size: 36px" text @click="openWebsite.FinalRip">
         <n-icon>
-          <film-outline />
+          <FilmOutline />
         </n-icon>
       </n-button>
     </n-space>

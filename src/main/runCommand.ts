@@ -1,4 +1,4 @@
-import { spawn } from 'child_process'
+import { spawn } from 'node:child_process'
 import { getCorePath } from './getCorePath'
 
 let child
@@ -6,16 +6,15 @@ let child
 export async function runCommand(
   event,
   config_json: string,
-  openOutputFolder: boolean
+  openOutputFolder: boolean,
 ): Promise<void> {
-  let resourceUrl: string
-
   // ---- 还是直接传base64吧
   // config_json = JSON.stringify(config_json) // 转义转义
   // ----
+  // eslint-disable-next-line node/prefer-global/buffer
   config_json = Buffer.from(config_json, 'utf8').toString('base64')
 
-  resourceUrl = getCorePath()
+  const resourceUrl = getCorePath()
 
   let command = `"${resourceUrl}" -b ${config_json}`
 

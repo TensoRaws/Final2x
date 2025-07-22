@@ -10,7 +10,7 @@ class ioPATH {
    */
   static add(id: string, path: string): void {
     const { inputpathMap } = storeToRefs(useIOPathStore())
-    if (path != '') {
+    if (path !== '') {
       inputpathMap.value.set(id, path)
     }
   }
@@ -30,7 +30,7 @@ class ioPATH {
    */
   static checkID(id: string): boolean {
     const { inputpathMap } = storeToRefs(useIOPathStore())
-    return inputpathMap.value.get(id) != undefined
+    return inputpathMap.value.get(id) !== undefined
   }
 
   /**
@@ -51,7 +51,7 @@ class ioPATH {
     // return inputpath key and value with string
     let inputpath = ''
     inputpathMap.value.forEach((value, key) => {
-      inputpath += key + ' : ' + value + '\n'
+      inputpath += `${key} : ${value}\n`
     })
     return inputpath
   }
@@ -71,7 +71,7 @@ class ioPATH {
    */
   static isEmpty(): boolean {
     const { inputpathMap } = storeToRefs(useIOPathStore())
-    return inputpathMap.value.size == 0
+    return inputpathMap.value.size === 0
   }
 
   /**
@@ -83,7 +83,7 @@ class ioPATH {
     console.log('inputpathList: ', inputpathList)
     let inputpathListString = ''
     for (const i in inputpathList) {
-      inputpathListString += inputpathList[i] + '\n'
+      inputpathListString += `${inputpathList[i]}\n`
     }
     return inputpathListString
   }
@@ -93,7 +93,7 @@ class ioPATH {
    */
   static setoutputpathManual(path: string): void {
     const { outputpath, outputpathLock } = storeToRefs(useIOPathStore())
-    if (path != '') {
+    if (path !== '') {
       outputpath.value = path
       outputpathLock.value = true
       console.log('outputpath SET SUCCESS!')
@@ -106,9 +106,10 @@ class ioPATH {
   static setoutputpath(path: string): void {
     const { outputpath, outputpathLock } = storeToRefs(useIOPathStore())
     // if outputpathLock is false or outputpath is empty, set outputpath
-    if (path != '' && (outputpathLock.value == false || !PathFormat.checkPath(outputpath.value))) {
+    if (path !== '' && (outputpathLock.value === false || !PathFormat.checkPath(outputpath.value))) {
       outputpath.value = path
-    } else {
+    }
+    else {
       console.log('outputpath Lock!')
     }
   }

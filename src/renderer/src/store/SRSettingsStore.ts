@@ -1,5 +1,6 @@
-import { ref, Ref } from 'vue'
+import type { Ref } from 'vue'
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const useSRSettingsStore = defineStore(
   'SRSettings',
@@ -11,13 +12,13 @@ export const useSRSettingsStore = defineStore(
     return {
       selectedSRModel,
       ghProxy,
-      targetScale
+      targetScale,
     }
   },
   {
     persist: {
       storage: localStorage,
-      paths: ['selectedSRModel', 'ghProxy', 'targetScale']
-    }
-  }
+      paths: ['selectedSRModel', 'ghProxy', 'targetScale'],
+    },
+  },
 )

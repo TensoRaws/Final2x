@@ -1,6 +1,6 @@
-import { ref } from 'vue'
+import type { UploadFileInfo } from 'naive-ui'
 import { defineStore } from 'pinia'
-import { UploadFileInfo } from 'naive-ui'
+import { ref } from 'vue'
 
 export const useIOPathStore = defineStore(
   'IOPath',
@@ -15,13 +15,13 @@ export const useIOPathStore = defineStore(
       inputpathMap,
       outputpath,
       outputpathLock,
-      inputFileList
+      inputFileList,
     }
   },
   {
     persist: {
       storage: localStorage,
-      paths: ['outputpath', 'outputpathLock']
-    }
-  }
+      paths: ['outputpath', 'outputpathLock'],
+    },
+  },
 )

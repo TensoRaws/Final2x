@@ -1,8 +1,44 @@
 <script lang="ts" setup>
-import { onBeforeMount, watch, PropType, onMounted, ref, Ref, nextTick } from 'vue'
-import { useOsTheme, darkTheme } from 'naive-ui'
+import type { PropType, Ref } from 'vue'
+import { darkTheme, useOsTheme } from 'naive-ui'
+import { nextTick, onBeforeMount, onMounted, ref, watch } from 'vue'
 
 export type NaiveDarkModeType = undefined | 'light' | 'dark' | 'system'
+
+// 不想用 CSS Transition，可以用 JS 实现捏
+
+// -----------------------------------------------------------------------------
+// Props and Emits
+// -----------------------------------------------------------------------------
+
+const props = defineProps({
+  darkMode: {
+    type: String as PropType<NaiveDarkModeType>,
+    default: () => 'system',
+  },
+  designDark: {
+    type: String,
+    default: () => '#000000',
+  },
+  designLight: {
+    type: String,
+    default: () => '#ffffff',
+  },
+  fadeLayer: {
+    type: Number,
+    default: () => 25,
+  },
+  color: {
+    type: String,
+    default: () => '#ffffff',
+  },
+  naivetheme: {
+    type: Object,
+    default: () => undefined,
+  },
+})
+
+const emits = defineEmits(['update:color', 'update:naivetheme'])
 
 // -----------------------------------------------------------------------------
 // Refs
@@ -15,47 +51,14 @@ const globalcolor = ref('')
 const DarkTheme: Ref<boolean | undefined> = ref(undefined)
 const DesignDarkColor = ref('#000000')
 const DesignLightColor = ref('#ffffff')
-const FadeLayer = ref(25) // 不想用 CSS Transition，可以用 JS 实现捏
-
-// -----------------------------------------------------------------------------
-// Props and Emits
-// -----------------------------------------------------------------------------
-
-const props = defineProps({
-  darkMode: {
-    type: String as PropType<NaiveDarkModeType>,
-    default: () => 'system'
-  },
-  designDark: {
-    type: String,
-    default: () => '#000000'
-  },
-  designLight: {
-    type: String,
-    default: () => '#ffffff'
-  },
-  fadeLayer: {
-    type: Number,
-    default: () => 25
-  },
-  color: {
-    type: String,
-    default: () => '#ffffff'
-  },
-  naivetheme: {
-    type: Object,
-    default: () => undefined
-  }
-})
-
-const emits = defineEmits(['update:color', 'update:naivetheme'])
+const FadeLayer = ref(25)
 
 // v-model 传入的 color
 watch(
   () => globalcolor.value,
   (value) => {
     emits('update:color', value)
-  }
+  },
 )
 
 // v-model 传入的 naivetheme
@@ -63,7 +66,7 @@ watch(
   () => DarkTheme.value,
   (value) => {
     emits('update:naivetheme', value ? darkTheme : undefined)
-  }
+  },
 )
 
 onBeforeMount(() => {
@@ -82,7 +85,7 @@ watch(
   () => props.darkMode,
   (value) => {
     DarkMode.value = value
-  }
+  },
 )
 
 // 监听 props.designDark 的变化
@@ -93,7 +96,7 @@ watch(
       globalcolor.value = value
     }
     DesignDarkColor.value = value
-  }
+  },
 )
 
 // 监听 props.designLight 的变化
@@ -104,7 +107,7 @@ watch(
       globalcolor.value = value
     }
     DesignLightColor.value = value
-  }
+  },
 )
 
 // 监听 props.fadeLayer 的变化
@@ -112,7 +115,7 @@ watch(
   () => props.fadeLayer,
   (value) => {
     FadeLayer.value = value
-  }
+  },
 )
 
 /**
@@ -124,7 +127,8 @@ function handleDarkModeChange(mode: NaiveDarkModeType): void {
   // console.log('handleDarkModeChange  mode', mode)
   if (mode === 'system' || mode === undefined) {
     DarkTheme.value = osThemeRef.value === 'dark'
-  } else {
+  }
+  else {
     DarkTheme.value = mode === 'dark'
   }
 }
@@ -154,7 +158,8 @@ watch(DarkTheme, (value) => {
     if (isCSSLight()) {
       switchCSSStyle('dark')
     }
-  } else {
+  }
+  else {
     if (isCSSDark()) {
       switchCSSStyle('light')
     }
@@ -169,8 +174,10 @@ watch(DarkTheme, (value) => {
  * @description Interpolate two colors by a given factor
  */
 function interpolateColor(color1: string, color2: string, factor: number): string {
-  if (factor === 0) return color1
-  if (factor === 1) return color2
+  if (factor === 0)
+    return color1
+  if (factor === 1)
+    return color2
 
   const c1 = hexToRgb(color1)
   const c2 = hexToRgb(color2)
@@ -186,10 +193,10 @@ function interpolate(start: number, end: number, factor: number): number {
   return start + (end - start) * factor
 }
 
-function hexToRgb(hex: string): { r: number; g: number; b: number } {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
+function hexToRgb(hex: string): { r: number, g: number, b: number } {
+  const r = Number.parseInt(hex.slice(1, 3), 16)
+  const g = Number.parseInt(hex.slice(3, 5), 16)
+  const b = Number.parseInt(hex.slice(5, 7), 16)
   return { r, g, b }
 }
 

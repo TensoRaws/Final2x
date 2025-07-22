@@ -1,5 +1,5 @@
-import { spawnSync } from 'child_process'
-import path from 'path'
+import { spawnSync } from 'node:child_process'
+import path from 'node:path'
 import { app } from 'electron'
 
 const FINAL2X_CORE_NAME = 'Final2x-core'
@@ -15,16 +15,18 @@ export function getCorePath(): string {
   if (!checkPipPackage()) {
     if (process.env.NODE_ENV === 'development') {
       return path.join(app.getAppPath(), 'resources', FINAL2X_CORE_PATH)
-    } else {
+    }
+    else {
       return path.join(app.getAppPath(), '..', FINAL2X_CORE_PATH)
     }
-  } else {
+  }
+  else {
     return FINAL2X_CORE_NAME
   }
 }
 
 function checkPipPackage(): boolean {
-  const command = FINAL2X_CORE_NAME + ' -h'
+  const command = `${FINAL2X_CORE_NAME} -h`
 
   const result = spawnSync(command, { shell: true, encoding: 'utf-8' })
 

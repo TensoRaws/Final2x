@@ -1,34 +1,34 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import i18n from './plugins/i18n'
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-// 通用字体
-import 'vfonts/OpenSans.css'
 import {
   // create naive ui
   create,
   // component
   NButton,
-  NDivider,
-  NSpace,
-  NIcon,
-  NImage,
   NCard,
+  NDivider,
   NDrawer,
   NDrawerContent,
+  NIcon,
+  NImage,
+  NInput,
+  NInputNumber,
   NLog,
+  NPopover,
   NProgress,
+  NSelect,
+  NSpace,
+  NSwitch,
   NText,
   NUpload,
   NUploadDragger,
-  NInput,
-  NInputNumber,
-  NPopover,
-  NSelect,
-  NSwitch
 } from 'naive-ui'
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { createApp } from 'vue'
+import App from './App.vue'
+import i18n from './plugins/i18n'
+import router from './router'
+// 通用字体
+import 'vfonts/OpenSans.css'
 
 const naive = create({
   components: [
@@ -49,8 +49,8 @@ const naive = create({
     NInputNumber,
     NPopover,
     NSelect,
-    NSwitch
-  ]
+    NSwitch,
+  ],
 })
 
 const pinia = createPinia()
