@@ -51,7 +51,9 @@ const globalcolor = ref('')
 const DarkTheme: Ref<boolean | undefined> = ref(undefined)
 const DesignDarkColor = ref('#000000')
 const DesignLightColor = ref('#ffffff')
-const FadeLayer = ref(25)// v-model 传入的 color
+const FadeLayer = ref(25)
+
+// v-model 传入的 color
 watch(
   () => globalcolor.value,
   (value) => {
