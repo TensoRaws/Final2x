@@ -10,7 +10,6 @@ export default antfu(
       'resources/*.js',
     ],
     rules: {
-      'no-dupe-keys': 'off',
       'no-console': 'off',
     },
   },
