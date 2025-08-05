@@ -38,7 +38,7 @@
     "systeminformation": "^5.27.7",
     "vfonts": "^0.0.3",
     "vue": "^3.5.17",
-    "vue-i18n": "^11.1.10",
+    "vue-i18n": "^11.1.11",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
