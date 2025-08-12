@@ -53,12 +53,6 @@ jobs:
           cd .\dist\win-arm64-unpacked
           7z a -r Final2x-windows-${{ matrix.os-version }}-unpacked.7z *
 
-      - name: upload-setup
-        uses: actions/upload-artifact@v4
-        with:
-          name: Final2x-windows-${{ matrix.os-version }}-setup
-          path: dist/*.exe
-
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
         uses: actions/upload-artifact@v4
@@ -76,7 +70,7 @@ jobs:
   macos:
     strategy:
       matrix:
-        os-version: ['x64', 'arm64']
+        os-version: ['arm64']
 
     runs-on: macos-14
     steps:
@@ -101,12 +95,6 @@ jobs:
           ARCH: ${{ matrix.os-version }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: zip-unpacked-x64
-        if: matrix.os-version == 'x64'
-        run: |
-          cd ./dist/mac
-          7z a -r Final2x-macos-${{ matrix.os-version }}-unpacked.7z *
-
       - name: zip-unpacked-arm64
         if: matrix.os-version == 'arm64'
         run: |
@@ -118,13 +106,6 @@ jobs:
         with:
           name: Final2x-macos-${{ matrix.os-version }}-dmg
           path: dist/*.dmg
-
-      - name: upload-unpacked-x64
-        if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: Final2x-macos-${{ matrix.os-version }}-unpacked
-          path: dist/mac/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'

@@ -52,33 +52,24 @@ jobs:
           cd .\dist\win-arm64-unpacked
           7z a -r Final2x-windows-${{ matrix.os-version }}-unpacked.7z *
 
-      - name: rename
-        run: |
-          cd .\dist
-          ren *.exe Final2x-windows-${{ matrix.os-version }}-setup.exe
-        shell: cmd
-
-      - name: upload-setup
-        uses: actions/upload-artifact@v4
-        with:
-          path: dist/*.exe
-
       - name: upload-unpacked-x64
         if: matrix.os-version == 'x64'
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-windows-${{ matrix.os-version }}-unpacked
           path: dist/win-unpacked/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-windows-${{ matrix.os-version }}-unpacked
           path: dist/win-arm64-unpacked/*.7z
 
   macos:
     strategy:
       matrix:
-        os-version: ['x64', 'arm64']
+        os-version: ['arm64']
 
     runs-on: macos-14
     steps:
@@ -108,12 +99,6 @@ jobs:
           cd ./dist
           mv *.dmg Final2x-macos-${{ matrix.os-version }}-dmg.dmg
 
-      - name: zip-unpacked-x64
-        if: matrix.os-version == 'x64'
-        run: |
-          cd ./dist/mac
-          7z a -r Final2x-macos-${{ matrix.os-version }}-unpacked.7z *
-
       - name: zip-unpacked-arm64
         if: matrix.os-version == 'arm64'
         run: |
@@ -123,18 +108,14 @@ jobs:
       - name: upload-dmg
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-macos-${{ matrix.os-version }}-dmg
           path: dist/*.dmg
-
-      - name: upload-unpacked-x64
-        if: matrix.os-version == 'x64'
-        uses: actions/upload-artifact@v4
-        with:
-          path: dist/mac/*.7z
 
       - name: upload-unpacked-arm64
         if: matrix.os-version == 'arm64'
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-macos-${{ matrix.os-version }}-unpacked
           path: dist/mac-arm64/*.7z
 
   linux-pip:
@@ -179,21 +160,25 @@ jobs:
       - name: upload-snap
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-linux-pip-${{ matrix.os-version }}-snap
           path: dist/*.snap
 
       - name: upload-AppImage
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-linux-pip-${{ matrix.os-version }}-AppImage
           path: dist/*.AppImage
 
       - name: upload-deb
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-linux-pip-${{ matrix.os-version }}-deb
           path: dist/*.deb
 
       - name: upload-unpacked
         uses: actions/upload-artifact@v4
         with:
+          name: Final2x-linux-pip-${{ matrix.os-version }}-unpacked
           path: dist/linux-unpacked/*.7z
 
   Release:
@@ -204,11 +189,12 @@ jobs:
         with:
           path: asset
 
-      - name: dist
+      - name: Flatten asset directory
         run: |
+          tree asset
           mkdir dist
-          cp asset/artifact/* dist
-          cd dist && ls
+          find asset -type f -print0 | xargs -0 -I{} cp "{}" dist/
+          cd dist && ls -l
 
       - name: Create Release and Upload Release Asset
         uses: softprops/action-gh-release@v1
