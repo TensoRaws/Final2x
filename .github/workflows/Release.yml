@@ -185,7 +185,7 @@ jobs:
     needs: [setup, windows, macos, linux-pip]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: asset
 
@@ -197,7 +197,7 @@ jobs:
           cd dist && ls -l
 
       - name: Create Release and Upload Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ needs.setup.outputs.DATE }}
           tag_name: ${{ needs.setup.outputs.DATE }}
