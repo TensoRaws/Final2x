@@ -36,6 +36,7 @@ jobs:
       - name: build
         run: |
           pnpm install
+          pnpm fetchcore
           pnpm run build:win-${{ matrix.os-version }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -94,6 +95,7 @@ jobs:
       - name: build
         run: |
           pnpm install
+          pnpm fetchcore
           pnpm run build:mac-${{ matrix.os-version }}
         env:
           ARCH: ${{ matrix.os-version }}
