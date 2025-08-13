@@ -9,11 +9,9 @@ const path = require('node:path')
 
 const coreDict = {
   'macos-arm64':
-    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-arm64.7z',
-  'macos-x64':
-    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-macos-x64.7z',
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2025-08-12/Final2x-core-macos-arm64.7z',
   'windows-x64':
-    'https://github.com/TensoRaws/Final2x-core/releases/download/2024-12-14/Final2x-core-windows-latest.7z',
+    'https://github.com/TensoRaws/Final2x-core/releases/download/2025-08-12/Final2x-core-windows-x64.7z',
 }
 
 console.log('-'.repeat(50))
