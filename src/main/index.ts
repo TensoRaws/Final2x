@@ -110,6 +110,9 @@ function setTray(): void {
   tray.setContextMenu(contextMenu)
 }
 
+// disable hardware acceleration for Compatibility for windows
+app.disableHardwareAcceleration()
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
