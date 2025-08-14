@@ -3,7 +3,7 @@ productName: Final2x
 directories:
   buildResources: build
 
-icon: resources/icon.ico
+icon: resources/icon.png
 
 files:
   - '!**/.vscode/*'
