@@ -60,13 +60,6 @@ Final2x-core -h # check if the installation is successful
 apt install -y libomp5 xdg-utils
 ```
 
-### Visual Example
-
-<div align="center">
-<img src="https://s2.loli.net/2023/07/20/hWi4U6BNeqau3MF.png" />
-</div>
-<h5 align="center"> use Final2x to perform 4x super-resolution on a 256x256 Hutao RGBA image </h5>
-
 ### Reference
 
 The following references were referenced in the development of this project:
