@@ -1,4 +1,7 @@
 # Final2x
+<div align="center">
+<img src="./resources/icon.png" width="30%"/>
+</div>
 
 ![MacOS](https://img.shields.io/badge/Support-MacOS-blue?logo=Apple&style=flat-square)
 ![Windows](https://img.shields.io/badge/Support-Windows-blue?logo=Windows&style=flat-square)
