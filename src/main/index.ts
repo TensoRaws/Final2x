@@ -1,7 +1,7 @@
 import { join } from 'node:path'
 import { electronApp, is, optimizer } from '@electron-toolkit/utils'
 import { app, BrowserWindow, ipcMain, Menu, nativeImage, shell, Tray } from 'electron'
-import icon from '../../resources/icon.png?asset'
+import appIcon from '../../resources/icon.png?asset'
 import trayIcon from '../../resources/tray.png?asset'
 
 import { openDirectory } from './openDirectory'
@@ -19,7 +19,7 @@ function createWindow(): void {
     frame: false,
     show: false,
     autoHideMenuBar: true,
-    icon: nativeImage.createFromPath(icon),
+    icon: nativeImage.createFromPath(appIcon),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
@@ -27,7 +27,7 @@ function createWindow(): void {
   })
 
   if (process.platform === 'darwin') {
-    app.dock.setIcon(nativeImage.createFromPath(icon))
+    app.dock.setIcon(nativeImage.createFromPath(appIcon))
   }
 
   ipcMain.on('execute-command', runCommand)
@@ -109,6 +109,9 @@ function setTray(): void {
   tray.setToolTip('Final2x')
   tray.setContextMenu(contextMenu)
 }
+
+// disable hardware acceleration for Compatibility for windows
+app.disableHardwareAcceleration()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

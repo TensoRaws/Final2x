@@ -1,4 +1,7 @@
 # Final2x
+<div align="center">
+<img src="./resources/icon.png" width="30%"/>
+</div>
 
 ![MacOS](https://img.shields.io/badge/Support-MacOS-blue?logo=Apple&style=flat-square)
 ![Windows](https://img.shields.io/badge/Support-Windows-blue?logo=Windows&style=flat-square)
@@ -56,13 +59,6 @@ pip install Final2x-core
 Final2x-core -h # check if the installation is successful
 apt install -y libomp5 xdg-utils
 ```
-
-### Visual Example
-
-<div align="center">
-<img src="https://s2.loli.net/2023/07/20/hWi4U6BNeqau3MF.png" />
-</div>
-<h5 align="center"> use Final2x to perform 4x super-resolution on a 256x256 Hutao RGBA image </h5>
 
 ### Reference
 

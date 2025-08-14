@@ -2,6 +2,9 @@ appId: com.final2x.app
 productName: Final2x
 directories:
   buildResources: build
+
+icon: resources/icon.png
+
 files:
   - '!**/.vscode/*'
   - '!src/*'
