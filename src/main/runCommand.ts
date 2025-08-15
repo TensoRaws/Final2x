@@ -43,7 +43,14 @@ export async function runCommand(
 
 export function killCommand(): void {
   if (child && child.pid) {
-    kill(child.pid)
-    console.log(`kill child process with pid: ${child.pid}`)
+    console.log(`Kill child process with pid: ${child.pid}`)
+    kill(child.pid, (err) => {
+      if (err) {
+        console.error(`Failed to kill process: ${err.message}`)
+      }
+      else {
+        console.log('Process killed successfully')
+      }
+    })
   }
 }
