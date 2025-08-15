@@ -3,15 +3,11 @@ import { FilmOutline } from '@vicons/ionicons5'
 
 class openWebsite {
   static async FinalRip(): Promise<void> {
-    const Link = 'https://github.com/TensoRaws/FinalRip'
-
-    window.open(Link, '_blank')
+    window.open('https://github.com/TensoRaws/FinalRip', '_blank')
   }
 
   static async VSET(): Promise<void> {
-    const Link = 'https://github.com/TensoRaws/VSET'
-
-    window.open(Link, '_blank')
+    window.open('https://github.com/TensoRaws/VSET', '_blank')
   }
 }
 </script>
