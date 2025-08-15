@@ -79,7 +79,7 @@ export default class IOPath {
    * @returns inputpathMap with string
    */
   static show(): string {
-    const inputpathList = IOPath.getList()
+    const inputpathList = this.getList()
     console.log('inputpathList: ', inputpathList)
     let inputpathListString = ''
     for (const i in inputpathList) {

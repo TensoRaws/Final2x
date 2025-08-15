@@ -7,12 +7,12 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { useIOPathStore } from '../../src/renderer/src/store/ioPathStore'
 import IOPath from '../../src/renderer/src/utils/IOPath'
 
-describe('iOPath', () => {
+describe('ioPath', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
   })
 
-  it('test_ioPath', () => {
+  it('test_IOPath', () => {
     const { outputpath } = storeToRefs(useIOPathStore())
     // checkID
     expect(IOPath.checkID('114514')).toBe(false)
