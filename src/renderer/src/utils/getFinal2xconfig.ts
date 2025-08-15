@@ -1,19 +1,19 @@
 import { storeToRefs } from 'pinia'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
 import PathFormat from '../utils/pathFormat'
-import ioPath from './ioPath'
+import IOPath from './IOPath'
 
 /**
  * @description: 返回输出路径，如果输出路径不合法，则从第一个输入路径构造一个合法输出路径
  */
 function getOutPutPATH(): string {
-  if (!PathFormat.checkPath(ioPath.getoutputpath())) {
-    const inputPATHList = ioPath.getList()
+  if (!PathFormat.checkPath(IOPath.getoutputpath())) {
+    const inputPATHList = IOPath.getList()
     const pathFormat = new PathFormat()
     pathFormat.setRootPath(inputPATHList[0])
-    ioPath.setoutputpath(pathFormat.getRootPath())
+    IOPath.setoutputpath(pathFormat.getRootPath())
   }
-  return ioPath.getoutputpath()
+  return IOPath.getoutputpath()
 }
 
 /**
@@ -22,7 +22,7 @@ function getOutPutPATH(): string {
 export function getFinal2xconfig(): string {
   const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
 
-  const inputPATHList = ioPath.getList()
+  const inputPATHList = IOPath.getList()
   const outputPATH = getOutPutPATH()
 
   let _gh_proxy: string | null

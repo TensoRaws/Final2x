@@ -5,7 +5,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { getFinal2xconfig } from '../../src/renderer/src/utils/getFinal2xconfig'
-import ioPath from '../../src/renderer/src/utils/ioPath'
+import IOPath from '../../src/renderer/src/utils/IOPath'
 
 describe('getFinal2xconfig', () => {
   beforeEach(() => {
@@ -14,19 +14,19 @@ describe('getFinal2xconfig', () => {
   })
 
   it('test_getFinal2xconfig', () => {
-    ioPath.add('114514', '/Users/Downloads/114514')
+    IOPath.add('114514', '/Users/Downloads/114514')
     expect(getFinal2xconfig()).toEqual(
       '{"pretrained_model_name":"RealESRGAN_RealESRGAN_x2plus_2x.pth","device":"auto","gh_proxy":null,"target_scale":null,"output_path":"/Users/Downloads","input_path":["/Users/Downloads/114514"]}',
     )
-    ioPath.setoutputpath('/test')
+    IOPath.setoutputpath('/test')
     expect(getFinal2xconfig()).toEqual(
       '{"pretrained_model_name":"RealESRGAN_RealESRGAN_x2plus_2x.pth","device":"auto","gh_proxy":null,"target_scale":null,"output_path":"/test","input_path":["/Users/Downloads/114514"]}',
     )
-    ioPath.add('114514', '/test1')
+    IOPath.add('114514', '/test1')
     expect(getFinal2xconfig()).toEqual(
       '{"pretrained_model_name":"RealESRGAN_RealESRGAN_x2plus_2x.pth","device":"auto","gh_proxy":null,"target_scale":null,"output_path":"/test","input_path":["/test1"]}',
     )
-    ioPath.add('1919810', '/test2')
+    IOPath.add('1919810', '/test2')
     expect(getFinal2xconfig()).toEqual(
       '{"pretrained_model_name":"RealESRGAN_RealESRGAN_x2plus_2x.pth","device":"auto","gh_proxy":null,"target_scale":null,"output_path":"/test","input_path":["/test1","/test2"]}',
     )

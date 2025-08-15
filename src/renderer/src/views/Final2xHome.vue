@@ -8,7 +8,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useIOPathStore } from '../store/ioPathStore'
 import { getRandString } from '../utils'
-import ioPath from '../utils/ioPath'
+import IOPath from '../utils/IOPath'
 import PathFormat from '../utils/pathFormat'
 
 const { t } = useI18n()
@@ -34,12 +34,12 @@ function handleClickUpload(): void {
       path.forEach((p: string) => {
         // 生成随机id
         let pathid = getRandString()
-        while (ioPath.checkID(pathid)) {
+        while (IOPath.checkID(pathid)) {
           pathid = getRandString()
         }
         // console.log(pathid)
         // 插入 inputpathMap
-        ioPath.add(pathid, p)
+        IOPath.add(pathid, p)
         // 插入 inputFileList
         inputFileList.value.push({
           fullPath: p,
@@ -73,7 +73,7 @@ onMounted(() => {
       console.log(path)
       pathFormat.setRootPath(path)
       console.log(pathFormat.getRootPath())
-      ioPath.setoutputpath(pathFormat.getRootPath())
+      IOPath.setoutputpath(pathFormat.getRootPath())
     }
   })
   // 阻止拖拽结束事件默认行为
@@ -90,15 +90,15 @@ function handleUploadChange(data: { fileList: UploadFileInfo[] }): void {
 
 function handleBeforeUpload(options: { file: UploadFileInfo }): UploadFileInfo {
   // console.log(pathFormat.getNewPath(options.file.fullPath))
-  ioPath.add(options.file.id, pathFormat.getNewPath(String(options.file.fullPath)))
+  IOPath.add(options.file.id, pathFormat.getNewPath(String(options.file.fullPath)))
   return options.file
 }
 
 function handleRemove(options: { file: UploadFileInfo, fileList: Array<UploadFileInfo> }): boolean {
   // console.log(ioPATH.show())
   // console.log(options.file.id)
-  Final2xHomeNotifications.handleremove(ioPath.getByID(options.file.id))
-  ioPath.delete(options.file.id)
+  Final2xHomeNotifications.handleremove(IOPath.getByID(options.file.id))
+  IOPath.delete(options.file.id)
   return true
 }
 </script>
