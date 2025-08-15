@@ -2,7 +2,7 @@ import { storeToRefs } from 'pinia'
 import { useIOPathStore } from '../store/ioPathStore'
 import PathFormat from '../utils/pathFormat'
 
-class ioPATH {
+export default class IOPath {
   /**
    * @description Add a new inputpath to inputpathMap
    * @param id inputpath id
@@ -79,7 +79,7 @@ class ioPATH {
    * @returns inputpathMap with string
    */
   static show(): string {
-    const inputpathList = ioPATH.getList()
+    const inputpathList = this.getList()
     console.log('inputpathList: ', inputpathList)
     let inputpathListString = ''
     for (const i in inputpathList) {
@@ -131,5 +131,3 @@ class ioPATH {
     inputFileList.value = []
   }
 }
-
-export default ioPATH

@@ -5,12 +5,13 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { useIOPathStore } from '../store/ioPathStore'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
-import ioPath from '../utils/IOPath'
-import { modelOptions } from '../utils/ModelOptions'
+import IOPath from '../utils/IOPath'
+import { modelOptions } from '../utils/modelOptions'
+import { torchDeviceList } from '../utils/torchDeviceList'
 
-const { selectedTorchDevice, torchDeviceList, openOutputFolder }
+const { openOutputFolder }
   = storeToRefs(useGlobalSettingsStore())
-const { selectedSRModel, ghProxy, targetScale } = storeToRefs(useSRSettingsStore())
+const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
 const { outputpath } = storeToRefs(useIOPathStore())
 const { t } = useI18n()
 
@@ -18,7 +19,7 @@ function getPath(): void {
   const handleSelected = (_, path): void => {
     if (path[0] !== undefined) {
       // console.log(ioPath.getoutputpath())
-      ioPath.setoutputpathManual(path[0])
+      IOPath.setoutputpathManual(path[0])
     }
   }
   window.electron.ipcRenderer.removeAllListeners('selectedItem') // 取消监听，防止多次触发

@@ -22,7 +22,7 @@ import {
   NUploadDragger,
 } from 'naive-ui'
 import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
 import { createApp } from 'vue'
 import App from './App.vue'
 import i18n from './plugins/i18n'
@@ -54,6 +54,8 @@ const naive = create({
 })
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
+pinia.use(createPersistedState({
+  storage: localStorage,
+}))
 
 createApp(App).use(naive).use(i18n).use(pinia).use(router).mount('#app')
