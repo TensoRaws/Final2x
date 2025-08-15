@@ -3,9 +3,11 @@ import { FilmOutline } from '@vicons/ionicons5'
 
 class openWebsite {
   static async FinalRip(): Promise<void> {
-    const Link = 'https://github.com/TensoRaws/FinalRip'
+    window.open('https://github.com/TensoRaws/FinalRip', '_blank')
+  }
 
-    window.open(Link, '_blank')
+  static async VSET(): Promise<void> {
+    window.open('https://github.com/TensoRaws/VSET', '_blank')
   }
 }
 </script>
@@ -13,7 +15,7 @@ class openWebsite {
 <template>
   <div class="MyExternalLink">
     <n-space>
-      <n-button style="font-size: 36px" text @click="openWebsite.FinalRip">
+      <n-button style="font-size: 36px" text @click="openWebsite.VSET">
         <n-icon>
           <FilmOutline />
         </n-icon>
@@ -34,10 +36,5 @@ class openWebsite {
 .custom-fade-enter-from,
 .custom-fade-leave-to {
   opacity: 0;
-}
-.final2x-logo {
-}
-
-.MyExternalLink {
 }
 </style>

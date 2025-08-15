@@ -14,9 +14,8 @@
 
 A cross-platform image super-resolution tool.
 
+- News🎉: Enhance a video? Try [VSET](https://github.com/TensoRaws/VSET)!
 - News🎉: We are thrilled to announce the release of Final2x v2.0.0, which marks a major milestone as we transition to utilizing [ccrestoration](https://github.com/TensoRaws/ccrestoration) (PyTorch) for our algorithm implementation.
-- News🎉: Want to enhance your video? Try [FinalRip](https://github.com/TensoRaws/FinalRip)!
-
 ### Screenshots
 
 <div align=center>
