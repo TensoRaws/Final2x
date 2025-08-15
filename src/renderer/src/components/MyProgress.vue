@@ -6,7 +6,7 @@ import { useI18n } from 'vue-i18n'
 
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { getFinal2xconfig } from '../utils/getFinal2xconfig'
-import ioPATH from '../utils/IOPath'
+import ioPath from '../utils/ioPath'
 
 const { t } = useI18n()
 const notification = useNotification()
@@ -114,7 +114,7 @@ function StartSR(): void {
     return
   }
 
-  if (ioPATH.isEmpty()) {
+  if (ioPath.isEmpty()) {
     MyProgressNotifications.SRListEmpty()
     return
   }
@@ -152,7 +152,7 @@ watchEffect(() => {
       MyProgressDialogs.SrFailed()
     }
     else {
-      ioPATH.clearALL()
+      ioPath.clearALL()
     }
   })
 })

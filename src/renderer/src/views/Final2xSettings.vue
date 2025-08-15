@@ -5,12 +5,13 @@ import { useI18n } from 'vue-i18n'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { useIOPathStore } from '../store/ioPathStore'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
-import ioPath from '../utils/IOPath'
-import { modelOptions } from '../utils/ModelOptions'
+import ioPath from '../utils/ioPath'
+import { modelOptions } from '../utils/modelOptions'
+import { torchDeviceList } from '../utils/torchDeviceList'
 
-const { selectedTorchDevice, torchDeviceList, openOutputFolder }
+const { openOutputFolder }
   = storeToRefs(useGlobalSettingsStore())
-const { selectedSRModel, ghProxy, targetScale } = storeToRefs(useSRSettingsStore())
+const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
 const { outputpath } = storeToRefs(useIOPathStore())
 const { t } = useI18n()
 

@@ -5,7 +5,7 @@
 import { createPinia, setActivePinia } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { getFinal2xconfig } from '../../src/renderer/src/utils/getFinal2xconfig'
-import ioPath from '../../src/renderer/src/utils/IOPath'
+import ioPath from '../../src/renderer/src/utils/ioPath'
 
 describe('getFinal2xconfig', () => {
   beforeEach(() => {

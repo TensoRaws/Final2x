@@ -1,8 +1,7 @@
 import { storeToRefs } from 'pinia'
-import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
-import ioPath from '../utils/IOPath'
 import PathFormat from '../utils/pathFormat'
+import ioPath from './ioPath'
 
 /**
  * @description: 返回输出路径，如果输出路径不合法，则从第一个输入路径构造一个合法输出路径
@@ -21,8 +20,7 @@ function getOutPutPATH(): string {
  * @description: 返回最终的json字符串配置文件
  */
 export function getFinal2xconfig(): string {
-  const { selectedSRModel, ghProxy, targetScale } = storeToRefs(useSRSettingsStore())
-  const { selectedTorchDevice } = storeToRefs(useGlobalSettingsStore())
+  const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
 
   const inputPATHList = ioPath.getList()
   const outputPATH = getOutPutPATH()
