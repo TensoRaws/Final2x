@@ -9,7 +9,7 @@ export const useSRSettingsStore = defineStore(
     const selectedTorchDevice = ref('auto')
     const ghProxy: Ref<string | null> = ref(null)
     const targetScale: Ref<number | null> = ref(null)
-    const useTile: Ref<boolean> = ref(false)
+    const useTile: Ref<boolean> = ref(true)
     const saveFormat: Ref<string> = ref('.png')
 
     return {
