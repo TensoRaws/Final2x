@@ -23,5 +23,7 @@ export const fr = {
     text16: 'Par déf.',
     text17: 'Dossier de sortie',
     text18: 'Proxy',
+    text19: 'Format',
+    text20: 'Tile Process',
   },
 }

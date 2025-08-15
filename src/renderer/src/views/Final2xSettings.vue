@@ -65,7 +65,7 @@ function getPath(): void {
 
       <n-space>
         <n-button dashed type="success" style="width: 80px">
-          {{ "保存格式" }}
+          {{ t('Final2xSettings.text19') }}
         </n-button>
 
         <n-select
@@ -75,7 +75,7 @@ function getPath(): void {
         />
 
         <n-button dashed type="success" style="width: 120px">
-          {{ "启用切块处理" }}
+          {{ t('Final2xSettings.text20') }}
         </n-button>
 
         <n-switch v-model:value="useTile" size="large" style="height: 35px; width: 76px">
