@@ -7,13 +7,19 @@ class openWebsite {
 
     window.open(Link, '_blank')
   }
+
+  static async VSET(): Promise<void> {
+    const Link = 'https://github.com/TensoRaws/VSET'
+
+    window.open(Link, '_blank')
+  }
 }
 </script>
 
 <template>
   <div class="MyExternalLink">
     <n-space>
-      <n-button style="font-size: 36px" text @click="openWebsite.FinalRip">
+      <n-button style="font-size: 36px" text @click="openWebsite.VSET">
         <n-icon>
           <FilmOutline />
         </n-icon>
@@ -34,10 +40,5 @@ class openWebsite {
 .custom-fade-enter-from,
 .custom-fade-leave-to {
   opacity: 0;
-}
-.final2x-logo {
-}
-
-.MyExternalLink {
 }
 </style>
