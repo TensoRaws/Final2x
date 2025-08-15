@@ -20,7 +20,7 @@ function getOutPutPATH(): string {
  * @description: 返回最终的json字符串配置文件
  */
 export function getFinal2xconfig(): string {
-  const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
+  const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice, useTile, saveFormat } = storeToRefs(useSRSettingsStore())
 
   const inputPATHList = IOPath.getList()
   const outputPATH = getOutPutPATH()
@@ -40,5 +40,7 @@ export function getFinal2xconfig(): string {
     target_scale: targetScale.value,
     output_path: outputPATH,
     input_path: inputPATHList,
+    use_tile: useTile.value,
+    save_format: saveFormat.value,
   })
 }

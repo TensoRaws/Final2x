@@ -7,11 +7,11 @@ import { useIOPathStore } from '../store/ioPathStore'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
 import IOPath from '../utils/IOPath'
 import { modelOptions } from '../utils/modelOptions'
-import { torchDeviceList } from '../utils/torchDeviceList'
+import { saveFormatList, torchDeviceList } from '../utils/SROptions'
 
 const { openOutputFolder }
   = storeToRefs(useGlobalSettingsStore())
-const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice } = storeToRefs(useSRSettingsStore())
+const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice, useTile, saveFormat } = storeToRefs(useSRSettingsStore())
 const { outputpath } = storeToRefs(useIOPathStore())
 const { t } = useI18n()
 
@@ -61,6 +61,31 @@ function getPath(): void {
           :placeholder="t('Final2xSettings.text16')"
           style="width: 171px"
         />
+      </n-space>
+
+      <n-space>
+        <n-button dashed type="success" style="width: 80px">
+          {{ t('Final2xSettings.text19') }}
+        </n-button>
+
+        <n-select
+          v-model:value="saveFormat"
+          :options="saveFormatList"
+          style="width: 150px"
+        />
+
+        <n-button dashed type="success" style="width: 120px">
+          {{ t('Final2xSettings.text20') }}
+        </n-button>
+
+        <n-switch v-model:value="useTile" size="large" style="height: 35px; width: 76px">
+          <template #checked>
+            ON
+          </template>
+          <template #unchecked>
+            OFF
+          </template>
+        </n-switch>
       </n-space>
 
       <n-space>

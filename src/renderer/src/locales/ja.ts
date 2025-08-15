@@ -23,5 +23,7 @@ export const ja = {
     text16: 'Default',
     text17: '出力フォルダ',
     text18: 'プロキシ',
+    text19: 'Format',
+    text20: 'Tile Process',
   },
 }

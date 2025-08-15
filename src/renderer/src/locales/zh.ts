@@ -23,5 +23,7 @@ export const zh = {
     text16: '默认',
     text17: '输出文件夹',
     text18: '下载代理',
+    text19: '保存格式',
+    text20: '启用切块处理',
   },
 }

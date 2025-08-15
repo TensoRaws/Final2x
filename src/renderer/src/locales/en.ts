@@ -23,5 +23,7 @@ export const en = {
     text16: 'Default',
     text17: 'Output Folder',
     text18: 'Proxy',
+    text19: 'Format',
+    text20: 'Tile Process',
   },
 }
