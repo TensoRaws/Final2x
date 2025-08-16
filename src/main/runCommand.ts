@@ -1,4 +1,6 @@
 import { spawn } from 'node:child_process'
+import kill from 'tree-kill'
+
 import { getCorePath } from './getCorePath'
 
 let child
@@ -39,8 +41,16 @@ export async function runCommand(
   })
 }
 
-export async function killCommand(): Promise<void> {
-  if (child) {
-    child.kill()
+export function killCommand(): void {
+  if (child && child.pid) {
+    console.log(`Kill child process with pid: ${child.pid}`)
+    kill(child.pid, (err) => {
+      if (err) {
+        console.error(`Failed to kill process: ${err.message}`)
+      }
+      else {
+        console.log('Process killed successfully')
+      }
+    })
   }
 }
