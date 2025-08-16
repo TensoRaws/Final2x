@@ -1,4 +1,5 @@
 # Final2x
+
 <div align="center">
 <img src="./resources/icon.png" width="30%"/>
 </div>
@@ -15,12 +16,14 @@
 A cross-platform image super-resolution tool.
 
 - News🎉: Enhance a video? Try [VSET](https://github.com/TensoRaws/VSET)!
+- News🎉: Final2x v3.0.0 is now available, support Nvidia 50 series GPUs now!
 - News🎉: We are thrilled to announce the release of Final2x v2.0.0, which marks a major milestone as we transition to utilizing [ccrestoration](https://github.com/TensoRaws/ccrestoration) (PyTorch) for our algorithm implementation.
+
 ### Screenshots
 
 <div align=center>
-<a href="https://sm.ms/image/NjpeUqToEc5kW12" target="_blank"><img src="https://s2.loli.net/2024/11/08/NjpeUqToEc5kW12.png" width="40%"></a>
-<a href="https://sm.ms/image/IeHzQuKFJPLc6Vp" target="_blank"><img src="https://s2.loli.net/2024/11/08/IeHzQuKFJPLc6Vp.png" width="40%"></a>
+<img width="40%" alt="image" src="https://github.com/user-attachments/assets/37f6d444-766b-4c28-b64a-018f78ae1f35" />
+<img width="40%" alt="image" src="https://github.com/user-attachments/assets/c6a278c0-bf11-46a7-9dcc-e5fe97ccc71c" />
 </div>
 
 ### Installation
