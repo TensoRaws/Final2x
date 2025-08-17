@@ -118,7 +118,7 @@ app.disableHardwareAcceleration()
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron')
+  electronApp.setAppUserModelId('com.final2x.app')
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -149,3 +149,16 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+let isQuitting = false
+app.on('before-quit', async (event) => {
+  if (isQuitting) {
+    console.log('Quitting...')
+    return
+  }
+  console.log('Killing child process before quitting...')
+  event.preventDefault()
+  isQuitting = true
+  await killCommand()
+  app.quit()
+})

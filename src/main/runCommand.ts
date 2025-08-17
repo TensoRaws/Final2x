@@ -41,9 +41,14 @@ export async function runCommand(
   })
 }
 
-export function killCommand(): void {
-  if (child && child.pid) {
-    console.log(`Kill child process with pid: ${child.pid}`)
+export async function killCommand(): Promise<void> {
+  if (!child || !child.pid) {
+    return
+  }
+
+  console.log(`Kill child process with pid: ${child.pid}`)
+
+  await new Promise<void>((resolve) => {
     kill(child.pid, (err) => {
       if (err) {
         console.error(`Failed to kill process: ${err.message}`)
@@ -51,6 +56,9 @@ export function killCommand(): void {
       else {
         console.log('Process killed successfully')
       }
+      resolve()
     })
-  }
+  })
+
+  child = null
 }
