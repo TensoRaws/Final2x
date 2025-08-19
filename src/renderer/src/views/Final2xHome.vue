@@ -48,16 +48,20 @@ function handleClickUpload(): void {
           percentage: 0,
           status: 'pending',
           thumbnailUrl: null,
-          type: 'image/png',
+          type: 'image',
           url: null,
         })
       })
     }
   }
 
-  window.electron.ipcRenderer.removeAllListeners('selectedItem') // 取消监听，防止多次触发
-  window.electron.ipcRenderer.send('open-directory-dialog', ['openFile', 'multiSelections'])
-  window.electron.ipcRenderer.on('selectedItem', handleSelected)
+  window.electron.ipcRenderer.invoke('open-directory-dialog', ['openFile', 'multiSelections'])
+    .then((path) => {
+      handleSelected(null, path)
+    })
+    .catch((error) => {
+      console.error('Error selecting file:', error)
+    })
 }
 
 onMounted(() => {
