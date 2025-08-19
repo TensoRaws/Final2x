@@ -34,7 +34,7 @@ function createWindow(): void {
 
   ipcMain.on('kill-command', killCommand)
 
-  ipcMain.on('open-directory-dialog', openDirectory)
+  ipcMain.handle('open-directory-dialog', openDirectory)
 
   ipcMain.on('minimize', () => {
     mainWindow.minimize()

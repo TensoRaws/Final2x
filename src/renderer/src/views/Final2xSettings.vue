@@ -22,9 +22,14 @@ function getPath(): void {
       IOPath.setoutputpathManual(path[0])
     }
   }
-  window.electron.ipcRenderer.removeAllListeners('selectedItem') // 取消监听，防止多次触发
-  window.electron.ipcRenderer.send('open-directory-dialog', ['openDirectory'])
-  window.electron.ipcRenderer.on('selectedItem', handleSelected)
+
+  window.electron.ipcRenderer.invoke('open-directory-dialog', ['openDirectory'])
+    .then((path) => {
+      handleSelected(null, path)
+    })
+    .catch((error) => {
+      console.error('Error selecting directory:', error)
+    })
 }
 </script>
 

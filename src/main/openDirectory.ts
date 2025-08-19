@@ -2,19 +2,16 @@ import { dialog } from 'electron'
 
 /**
  * @description Open a directory or file/multiple files
- * @param event The event that triggered the function
+ * @param _ Unused parameter, can be used for context in future
  * @param p The properties of the dialog
  */
-export function openDirectory(event, p: Array<any>): void {
-  dialog
-    .showOpenDialog({
-      properties: p,
-    })
-    .then((result) => {
-      console.log(result)
-      event.sender.send('selectedItem', result.filePaths)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+export async function openDirectory(_, p: Array<'openFile' | 'openDirectory' | 'multiSelections'>): Promise<Array<string>> {
+  try {
+    const { canceled, filePaths } = await dialog.showOpenDialog({ properties: p })
+    return canceled ? [] : filePaths
+  }
+  catch (error) {
+    console.error('Error opening directory dialog:', error)
+    return []
+  }
 }
