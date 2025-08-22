@@ -38,10 +38,6 @@ export async function runCommand(
     event.sender.send('command-stderr', data.toString())
   })
 
-  // child.on('close', (code) => {
-  //   event.sender.send('command-close-code', code)
-  // })
-
   const [code] = await once(child, 'close')
   event.sender.send('command-close-code', code)
   console.log(`Child process exited with code: ${code}`)
