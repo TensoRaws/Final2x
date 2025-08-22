@@ -66,7 +66,9 @@ export async function killCommand(): Promise<void> {
       else {
         console.log('Process killed successfully')
       }
-      child = null
+      if (child && child.pid === pid) {
+        child = null
+      }
       resolve()
     })
   })
