@@ -1,12 +1,14 @@
+import type { IpcMainEvent } from 'electron'
+import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 import { spawn } from 'node:child_process'
+import { once } from 'node:events'
 import kill from 'tree-kill'
-
 import { getCorePath } from './getCorePath'
 
-let child
+let child: ChildProcessWithoutNullStreams | null = null
 
 export async function runCommand(
-  event,
+  event: IpcMainEvent,
   config_json: string,
   openOutputFolder: boolean,
 ): Promise<void> {
@@ -36,29 +38,34 @@ export async function runCommand(
     event.sender.send('command-stderr', data.toString())
   })
 
-  child.on('close', (code) => {
-    event.sender.send('command-close-code', code)
-  })
+  const [code] = await once(child, 'close')
+  event.sender.send('command-close-code', code)
+  console.log(`Child process exited with code: ${code}`)
+
+  child = null
 }
 
 export async function killCommand(): Promise<void> {
   if (!child || !child.pid) {
+    console.error('Could not find child process, nothing to kill.')
     return
   }
+  const pid = child.pid
 
-  console.log(`Kill child process with pid: ${child.pid}`)
+  console.log(`Kill child process with pid: ${pid}`)
 
   await new Promise<void>((resolve) => {
-    kill(child.pid, (err) => {
+    kill(pid, (err) => {
       if (err) {
         console.error(`Failed to kill process: ${err.message}`)
       }
       else {
         console.log('Process killed successfully')
       }
+      if (child && child.pid === pid) {
+        child = null
+      }
       resolve()
     })
   })
-
-  child = null
 }

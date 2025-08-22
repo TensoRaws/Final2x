@@ -28,7 +28,7 @@ export function getCorePath(): string {
 function checkPipPackage(): boolean {
   const command = `${FINAL2X_CORE_NAME} -h`
 
-  const result = spawnSync(command, { shell: true, encoding: 'utf-8' })
+  const result = spawnSync(command, { shell: true })
 
   return result.status === 0
 }
