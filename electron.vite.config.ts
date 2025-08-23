@@ -4,6 +4,11 @@ import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
 
 export default defineConfig({
   main: {
+    resolve: {
+      alias: {
+        '@main': resolve('src/main'),
+      },
+    },
     plugins: [externalizeDepsPlugin()],
   },
   preload: {

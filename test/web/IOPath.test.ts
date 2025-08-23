@@ -1,11 +1,7 @@
-/**
- * @vitest-environment jsdom
- */
-
+import { useIOPathStore } from '@renderer/store/ioPathStore'
+import IOPath from '@renderer/utils/IOPath'
 import { createPinia, setActivePinia, storeToRefs } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useIOPathStore } from '../../src/renderer/src/store/ioPathStore'
-import IOPath from '../../src/renderer/src/utils/IOPath'
 
 describe('ioPath', () => {
   beforeEach(() => {

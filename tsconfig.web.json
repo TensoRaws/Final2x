@@ -14,6 +14,7 @@
     "src/renderer/src/locales/*.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
-    "src/preload/*.d.ts"
+    "src/preload/*.d.ts",
+    "test/web/**/*"
   ]
 }

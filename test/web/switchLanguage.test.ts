@@ -1,12 +1,8 @@
-/**
- * @vitest-environment jsdom
- */
-
+import { useGlobalSettingsStore } from '@renderer/store/globalSettingsStore'
+import { getLanguage } from '@renderer/utils'
+import { switchLanguage } from '@renderer/utils/switchLanguage'
 import { createPinia, setActivePinia, storeToRefs } from 'pinia'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useGlobalSettingsStore } from '../../src/renderer/src/store/globalSettingsStore'
-import { getLanguage } from '../../src/renderer/src/utils'
-import { switchLanguage } from '../../src/renderer/src/utils/switchLanguage'
 
 describe('switchLanguage', () => {
   beforeEach(() => {

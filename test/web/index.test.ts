@@ -1,9 +1,5 @@
-/**
- * @vitest-environment jsdom
- */
-
+import { clickDebounce, DeepDeepSleep, getRandString, sleep } from '@renderer/utils'
 import { describe, expect, it, vi } from 'vitest'
-import { clickDebounce, DeepDeepSleep, getRandString, sleep } from '../../src/renderer/src/utils'
 
 describe('utils', () => {
   it('sleep', async () => {
