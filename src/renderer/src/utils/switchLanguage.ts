@@ -1,6 +1,6 @@
 import { storeToRefs } from 'pinia'
+import { getLanguage } from '.'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
-import { getLanguage } from './index'
 
 /**
  * @description 切换语言，第一次切换到中文

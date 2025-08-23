@@ -1,5 +1,5 @@
+import PathFormat from '@renderer/utils/pathFormat'
 import { describe, expect, it } from 'vitest'
-import PathFormat from '../../src/renderer/src/utils/pathFormat'
 
 describe('pathFormat', () => {
   it('test_unix', () => {

@@ -5,7 +5,7 @@ import { nextTick, onMounted, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
-import { getFinal2xconfig } from '../utils/getFinal2xconfig'
+import { getFinal2xConfig } from '../utils/getFinal2xConfig'
 import IOPath from '../utils/IOPath'
 
 const { t } = useI18n()
@@ -124,7 +124,7 @@ function StartSR(): void {
 
   MyProgressNotifications.StartSR()
 
-  const command = getFinal2xconfig()
+  const command = getFinal2xConfig()
 
   CommandLOG.value += `\n${command}\n`
   CommandLOG.value += `OPEN OUTPUT FOLDER: ${openOutputFolder.value}\n`
