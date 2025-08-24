@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { IpcChannelSend } from '@shared/const/ipc'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const isFocus = ref(true)
@@ -22,15 +23,15 @@ onUnmounted(() => {
 })
 
 function handleClose(): void {
-  window.electron.ipcRenderer.send('close')
+  window.electron.ipcRenderer.send(IpcChannelSend.CLOSE)
 }
 
 function handleMinimize(): void {
-  window.electron.ipcRenderer.send('minimize')
+  window.electron.ipcRenderer.send(IpcChannelSend.MINIMIZE)
 }
 
 function handleMaximize(): void {
-  window.electron.ipcRenderer.send('maximize')
+  window.electron.ipcRenderer.send(IpcChannelSend.MAXIMIZE)
 }
 </script>
 

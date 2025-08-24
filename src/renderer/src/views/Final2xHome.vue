@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import type { UploadFileInfo } from 'naive-ui'
+import { IpcChannelInvoke } from '@shared/const/ipc'
 import { FileImageOutlined } from '@vicons/antd'
 import { useNotification } from 'naive-ui'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 
+import { useI18n } from 'vue-i18n'
 import { useIOPathStore } from '../store/ioPathStore'
 import { getRandString } from '../utils'
 import IOPath from '../utils/IOPath'
@@ -55,7 +56,7 @@ function handleClickUpload(): void {
     }
   }
 
-  window.electron.ipcRenderer.invoke('open-directory-dialog', ['openFile', 'multiSelections'])
+  window.electron.ipcRenderer.invoke(IpcChannelInvoke.OPEN_DIRECTORY_DIALOG, ['openFile', 'multiSelections'])
     .then((path) => {
       handleSelected(null, path)
     })
