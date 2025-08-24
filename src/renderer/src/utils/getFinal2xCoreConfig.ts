@@ -1,3 +1,5 @@
+import type { Final2xCoreConfig } from '@shared/type/core'
+import { useGlobalSettingsStore } from '@renderer/store/globalSettingsStore'
 import { storeToRefs } from 'pinia'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
 import PathFormat from '../utils/pathFormat'
@@ -19,8 +21,9 @@ function getOutPutPATH(): string {
 /**
  * @description: 返回最终的json字符串配置文件
  */
-export function getFinal2xConfig(): string {
+export function getFinal2xCoreConfig(): Final2xCoreConfig {
   const { selectedSRModel, ghProxy, targetScale, selectedTorchDevice, useTile, saveFormat } = storeToRefs(useSRSettingsStore())
+  const { openOutputFolder } = storeToRefs(useGlobalSettingsStore())
 
   const inputPATHList = IOPath.getList()
   const outputPATH = getOutPutPATH()
@@ -33,14 +36,19 @@ export function getFinal2xConfig(): string {
     _gh_proxy = ghProxy.value
   }
 
-  return JSON.stringify({
-    pretrained_model_name: selectedSRModel.value,
-    device: selectedTorchDevice.value,
-    gh_proxy: _gh_proxy,
-    target_scale: targetScale.value,
-    output_path: outputPATH,
-    input_path: inputPATHList,
-    use_tile: useTile.value,
-    save_format: saveFormat.value,
-  })
+  return {
+    config: {
+      pretrained_model_name: selectedSRModel.value,
+      device: selectedTorchDevice.value,
+      gh_proxy: _gh_proxy,
+      target_scale: targetScale.value,
+      output_path: outputPATH,
+      input_path: inputPATHList,
+      use_tile: useTile.value,
+      save_format: saveFormat.value,
+    },
+    options: {
+      open_output_folder: openOutputFolder.value,
+    },
+  }
 }

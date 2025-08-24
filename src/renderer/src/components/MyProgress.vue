@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 import { nextTick, onMounted, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
-import { getFinal2xConfig } from '../utils/getFinal2xConfig'
+import { getFinal2xCoreConfig } from '../utils/getFinal2xCoreConfig'
 import IOPath from '../utils/IOPath'
 
 const { t } = useI18n()
@@ -17,7 +17,6 @@ const {
   StartCommandLock,
   SrSuccess,
   ProgressPercentage,
-  openOutputFolder,
 } = storeToRefs(useGlobalSettingsStore())
 
 const showLOG = ref(false)
@@ -150,12 +149,11 @@ function StartSR(): void {
 
   MyProgressNotifications.StartSR()
 
-  const command = getFinal2xConfig()
+  // get Final2x-core config
+  const final2xCoreConfig = getFinal2xCoreConfig()
+  CommandLOG.value += `\n${JSON.stringify(final2xCoreConfig)}\n`
 
-  CommandLOG.value += `\n${command}\n`
-  CommandLOG.value += `OPEN OUTPUT FOLDER: ${openOutputFolder.value}\n`
-
-  window.electron.ipcRenderer.send(IpcChannelSend.EXECUTE_COMMAND, command, openOutputFolder.value)
+  window.electron.ipcRenderer.send(IpcChannelSend.EXECUTE_COMMAND, final2xCoreConfig)
 }
 
 function TerminateSR(): void {

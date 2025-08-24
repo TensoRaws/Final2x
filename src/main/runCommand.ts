@@ -1,3 +1,4 @@
+import type { Final2xCoreConfig } from '@shared/type/core'
 import type { IpcMainEvent } from 'electron'
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 import { spawn } from 'node:child_process'
@@ -8,14 +9,8 @@ import { getCorePath } from './getCorePath'
 
 let child: ChildProcessWithoutNullStreams | null = null
 
-export async function runCommand(
-  event: IpcMainEvent,
-  config_json: string,
-  openOutputFolder: boolean,
-): Promise<void> {
-  // ---- 还是直接传base64吧
-  // config_json = JSON.stringify(config_json) // 转义转义
-  // ----
+export async function runCommand(event: IpcMainEvent, coreConfig: Final2xCoreConfig): Promise<void> {
+  let config_json = JSON.stringify(coreConfig.config)
   // eslint-disable-next-line node/prefer-global/buffer
   config_json = Buffer.from(config_json, 'utf8').toString('base64')
 
@@ -23,7 +18,7 @@ export async function runCommand(
 
   let command = `"${resourceUrl}" -b ${config_json}`
 
-  if (!openOutputFolder) {
+  if (!coreConfig.options.open_output_folder) {
     command += ' -n'
   }
 
