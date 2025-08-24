@@ -3,7 +3,6 @@ import { IpcChannelOn, IpcChannelSend } from '@shared/const/ipc'
 import { useDialog, useNotification } from 'naive-ui'
 import { storeToRefs } from 'pinia'
 import { nextTick, onMounted, ref, watchEffect } from 'vue'
-
 import { useI18n } from 'vue-i18n'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { getFinal2xConfig } from '../utils/getFinal2xConfig'

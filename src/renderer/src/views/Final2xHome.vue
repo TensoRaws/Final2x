@@ -5,7 +5,6 @@ import { FileImageOutlined } from '@vicons/antd'
 import { useNotification } from 'naive-ui'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
-
 import { useI18n } from 'vue-i18n'
 import { useIOPathStore } from '../store/ioPathStore'
 import { getRandString } from '../utils'

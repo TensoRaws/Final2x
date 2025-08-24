@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { IpcChannelInvoke } from '@shared/const/ipc'
 import { storeToRefs } from 'pinia'
-
 import { useI18n } from 'vue-i18n'
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { useIOPathStore } from '../store/ioPathStore'
