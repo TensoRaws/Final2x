@@ -23,6 +23,32 @@ const {
 const showLOG = ref(false)
 
 onMounted(() => {
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_STDOUT,
+    (_, data) => {
+      handleCommandLOG(data)
+    },
+  )
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_STDERR,
+    (_, data) => {
+      handleCommandLOG(data)
+    },
+  )
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_CLOSE,
+    (_, data) => {
+      handleCommandLOG(`CLOSE CODE:${data}`)
+      StartCommandLock.value = false
+
+      if (!SrSuccess.value) {
+        MyProgressDialogs.SrFailed()
+      }
+      else {
+        IOPath.clearALL()
+      }
+    },
+  )
   watchEffect(() => {
     if (CommandLOG.value) {
       nextTick(() => {
@@ -136,26 +162,6 @@ function TerminateSR(): void {
   window.electron.ipcRenderer.send(IpcChannelSend.KILL_COMMAND)
   MyProgressNotifications.TerminateSR()
 }
-
-watchEffect(() => {
-  window.electron.ipcRenderer.on(IpcChannelOn.COMMAND_STDOUT, (_, data) => {
-    handleCommandLOG(data)
-  })
-  window.electron.ipcRenderer.on(IpcChannelOn.COMMAND_STDERR, (_, data) => {
-    handleCommandLOG(data)
-  })
-  window.electron.ipcRenderer.on(IpcChannelOn.COMMAND_CLOSE, (_, data) => {
-    handleCommandLOG(`CLOSE CODE:${data}`)
-    StartCommandLock.value = false
-
-    if (!SrSuccess.value) {
-      MyProgressDialogs.SrFailed()
-    }
-    else {
-      IOPath.clearALL()
-    }
-  })
-})
 </script>
 
 <template>
