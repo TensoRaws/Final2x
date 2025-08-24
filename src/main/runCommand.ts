@@ -9,10 +9,7 @@ import { getCorePath } from './getCorePath'
 
 let child: ChildProcessWithoutNullStreams | null = null
 
-export async function runCommand(
-  event: IpcMainEvent,
-  coreConfig: Final2xCoreConfig,
-): Promise<void> {
+export async function runCommand(event: IpcMainEvent, coreConfig: Final2xCoreConfig): Promise<void> {
   let config_json = JSON.stringify(coreConfig.config)
   // eslint-disable-next-line node/prefer-global/buffer
   config_json = Buffer.from(config_json, 'utf8').toString('base64')
