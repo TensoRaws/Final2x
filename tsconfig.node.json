@@ -6,15 +6,19 @@
     "paths": {
       "@main/*": [
         "src/main/*"
+      ],
+      "@shared/*": [
+        "src/shared/*"
       ]
     },
     "types": ["electron-vite/node"]
   },
   "include": [
     "electron.vite.config.*",
-    "src/main/*",
-    "src/preload/*",
+    "src/main/**/*",
+    "src/preload/**/*",
     "src/preload/*.d.ts",
+    "src/shared/**/*",
     "test/node/**/*"
   ]
 }

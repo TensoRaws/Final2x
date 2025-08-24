@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import { IpcChannelInvoke } from '@shared/const/ipc'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
-
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { useIOPathStore } from '../store/ioPathStore'
 import { useSRSettingsStore } from '../store/SRSettingsStore'
@@ -23,7 +23,7 @@ function getPath(): void {
     }
   }
 
-  window.electron.ipcRenderer.invoke('open-directory-dialog', ['openDirectory'])
+  window.electron.ipcRenderer.invoke(IpcChannelInvoke.OPEN_DIRECTORY_DIALOG, ['openDirectory'])
     .then((path) => {
       handleSelected(null, path)
     })

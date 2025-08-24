@@ -2,6 +2,7 @@ import type { IpcMainEvent } from 'electron'
 import type { ChildProcessWithoutNullStreams } from 'node:child_process'
 import { spawn } from 'node:child_process'
 import { once } from 'node:events'
+import { IpcChannelOn } from '@shared/const/ipc'
 import kill from 'tree-kill'
 import { getCorePath } from './getCorePath'
 
@@ -31,15 +32,15 @@ export async function runCommand(
   child = spawn(command, { shell: true })
 
   child.stdout.on('data', (data) => {
-    event.sender.send('command-stdout', data.toString())
+    event.sender.send(IpcChannelOn.COMMAND_STDOUT, data.toString())
   })
 
   child.stderr.on('data', (data) => {
-    event.sender.send('command-stderr', data.toString())
+    event.sender.send(IpcChannelOn.COMMAND_STDERR, data.toString())
   })
 
   const [code] = await once(child, 'close')
-  event.sender.send('command-close-code', code)
+  event.sender.send(IpcChannelOn.COMMAND_CLOSE, code)
   console.log(`Child process exited with code: ${code}`)
 
   child = null

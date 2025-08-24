@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import { IpcChannelOn, IpcChannelSend } from '@shared/const/ipc'
 import { useDialog, useNotification } from 'naive-ui'
 import { storeToRefs } from 'pinia'
 import { nextTick, onMounted, ref, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
-
 import { useGlobalSettingsStore } from '../store/globalSettingsStore'
 import { getFinal2xConfig } from '../utils/getFinal2xConfig'
 import IOPath from '../utils/IOPath'
@@ -23,6 +23,32 @@ const {
 const showLOG = ref(false)
 
 onMounted(() => {
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_STDOUT,
+    (_, data) => {
+      handleCommandLOG(data)
+    },
+  )
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_STDERR,
+    (_, data) => {
+      handleCommandLOG(data)
+    },
+  )
+  window.electron.ipcRenderer.on(
+    IpcChannelOn.COMMAND_CLOSE,
+    (_, data) => {
+      handleCommandLOG(`CLOSE CODE:${data}`)
+      StartCommandLock.value = false
+
+      if (!SrSuccess.value) {
+        MyProgressDialogs.SrFailed()
+      }
+      else {
+        IOPath.clearALL()
+      }
+    },
+  )
   watchEffect(() => {
     if (CommandLOG.value) {
       nextTick(() => {
@@ -129,33 +155,13 @@ function StartSR(): void {
   CommandLOG.value += `\n${command}\n`
   CommandLOG.value += `OPEN OUTPUT FOLDER: ${openOutputFolder.value}\n`
 
-  window.electron.ipcRenderer.send('execute-command', command, openOutputFolder.value)
+  window.electron.ipcRenderer.send(IpcChannelSend.EXECUTE_COMMAND, command, openOutputFolder.value)
 }
 
 function TerminateSR(): void {
-  window.electron.ipcRenderer.send('kill-command')
+  window.electron.ipcRenderer.send(IpcChannelSend.KILL_COMMAND)
   MyProgressNotifications.TerminateSR()
 }
-
-watchEffect(() => {
-  window.electron.ipcRenderer.on('command-stdout', (_, data) => {
-    handleCommandLOG(data)
-  })
-  window.electron.ipcRenderer.on('command-stderr', (_, data) => {
-    handleCommandLOG(data)
-  })
-  window.electron.ipcRenderer.on('command-close-code', (_, data) => {
-    handleCommandLOG(`CLOSE CODE:${data}`)
-    StartCommandLock.value = false
-
-    if (!SrSuccess.value) {
-      MyProgressDialogs.SrFailed()
-    }
-    else {
-      IOPath.clearALL()
-    }
-  })
-})
 </script>
 
 <template>

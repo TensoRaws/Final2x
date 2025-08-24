@@ -7,6 +7,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@main': resolve('src/main'),
+        '@shared': resolve('src/shared'),
       },
     },
     plugins: [externalizeDepsPlugin()],
@@ -18,6 +19,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@renderer': resolve('src/renderer/src'),
+        '@shared': resolve('src/shared'),
       },
     },
     plugins: [vue()],
